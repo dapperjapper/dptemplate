@@ -11,11 +11,9 @@
 \ProvidesClass{dp}[\filedate\space\fileversion\space dp class by Ken Brevoort]
 %% options
 \newif\if@article
-\newif\if@review
 \newif\if@shortnames
 
 \@articletrue
-\@reviewfalse
 \@shortnamesfalse
 
 \DeclareOption{article}{\@articletrue}
@@ -123,19 +121,12 @@
   \Plainkeywords{\@Keywords}
 \fi
 
-\if@review
-  \Hyperauthor{\@Plainreviewer}
-  \Keywords{}
-  \Footername{Reviewer}
-  \Firstdate{\textit{Published:} \@Submitdate}
-  \Seconddate{}
-\else
-  \Hyperauthor{\@Plainauthor}
-  \Keywords{---!!!---at least one keyword is required---!!!---}
-  \Footername{Affiliation}
-  \Firstdate{\textit{Submitted:} \@Submitdate}
-  \Seconddate{\textit{Accepted:} \@Acceptdate}
-\fi
+\Hyperauthor{\@Plainauthor}
+\Keywords{---!!!---at least one keyword is required---!!!---}
+\Footername{Affiliation}
+\Firstdate{\textit{Submitted:} \@Submitdate}
+\Seconddate{\textit{Accepted:} \@Acceptdate}
+
 %% Sweave(-like)
 \DefineVerbatimEnvironment{Sinput}{Verbatim}{fontshape=sl}
 \DefineVerbatimEnvironment{Soutput}{Verbatim}{}
@@ -192,29 +183,8 @@
    {\it \small \@Month{} \@Year, Volume~\@Volume, \@Seriesname~\@Issue.%
             \hfill \href{http://www.jstatsoft.org/}{http://www.jstatsoft.org/}}}\\[0.1cm]
      \hrule height 3pt}}
-\if@review
-  \renewcommand{\maketitle}{
-    \@oddhead{\@myoddhead}\\[3\baselineskip]
-    {\large
-    \noindent
-    Reviewer: \@Reviewer
-    \vspace{\baselineskip}
-    \hrule
-    \vspace{\baselineskip}
-    \textbf{\@Booktitle}
-    \begin{quotation} \noindent
-    \@Reviewauthor
-    \end{quotation}
-    \vspace{0.7\baselineskip}
-    \hrule
-    \vspace{1.3\baselineskip}
-    }
 
-    \thispagestyle{empty}
-      \markboth{\centerline{\@Shorttitle}}{\centerline{\@Hypersubject}}
-    \pagestyle{myheadings}
-  }
-\else
+
   \def\maketitle{
     \@oddhead{\@myoddhead} \par
    \begingroup
@@ -261,7 +231,7 @@
    \hrule
    \vskip 0.2in minus 0.1in
   }}
-\fi
+
 %% sections, subsections, and subsubsections
 \newlength{\preXLskip}
 \newlength{\preLskip}
@@ -312,32 +282,13 @@
   \textbf{\large #1} \nopagebreak
   \vskip \postSskip \nopagebreak}
 
-\if@review
-  \renewcommand{\section}{\secdef \dpsimplesec \dpsimplesecnn}
-  \renewcommand{\subsection}{\secdef \dpsimplesec \dpsimplesecnn}
-  \renewcommand{\subsubsection}{\secdef \dpsimplesec \dpsimplesecnn}
-\else
-  \renewcommand{\section}{\secdef \dpsec \dpsecnn}
-  \renewcommand{\subsection}{\secdef \dpsubsec \dpsubsecnn}
-  \renewcommand{\subsubsection}{\secdef \dpsubsubsec \dpsubsubsecnn}
-\fi
+\renewcommand{\section}{\secdef \dpsec \dpsecnn}
+\renewcommand{\subsection}{\secdef \dpsubsec \dpsubsecnn}
+\renewcommand{\subsubsection}{\secdef \dpsubsubsec \dpsubsubsecnn}
+
 %% colors
 \definecolor{Red}{rgb}{0.5,0,0}
 \definecolor{Blue}{rgb}{0,0,0.5}
-\if@review
-  \hypersetup{%
-    hyperindex = {true},
-    colorlinks = {true},
-    linktocpage = {true},
-    plainpages = {false},
-    linkcolor = {Blue},
-    citecolor = {Blue},
-    urlcolor = {Red},
-    pdfstartview = {Fit},
-    pdfpagemode = {None},
-    pdfview = {XYZ null null null}
-  }
-\else
   \hypersetup{%
     hyperindex = {true},
     colorlinks = {true},
@@ -350,7 +301,6 @@
     pdfpagemode = {UseOutlines},
     pdfview = {XYZ null null null}
   }
-\fi
   \AtBeginDocument{
     \hypersetup{%
       pdfauthor = {\@Hyperauthor},
