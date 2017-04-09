@@ -20,7 +20,7 @@
 \DeclareOption{shortnames}{\@shortnamestrue}
 
 \ProcessOptions
-\LoadClass[11pt,a4paper,twoside]{article}
+\LoadClass[11pt,letterpaper,twoside]{article}
 %% required packages
 \RequirePackage{graphicx,color,ae,fancyvrb}
 \RequirePackage[T1]{fontenc}
