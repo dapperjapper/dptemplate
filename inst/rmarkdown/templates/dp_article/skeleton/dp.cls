@@ -13,20 +13,17 @@
 \newif\if@article
 \newif\if@review
 \newif\if@shortnames
-\newif\if@notitle
 \newif\if@noheadings
 \newif\if@nofooter
 
 \@articletrue
 \@reviewfalse
 \@shortnamesfalse
-\@notitlefalse
 \@noheadingsfalse
 \@nofooterfalse
 
 \DeclareOption{article}{\@articletrue}
 \DeclareOption{shortnames}{\@shortnamestrue}
-\DeclareOption{notitle}{\@notitletrue}
 \DeclareOption{noheadings}{\@noheadingstrue}
 \DeclareOption{nofooter}{\@nofootertrue}
 
@@ -375,11 +372,9 @@
       pdfkeywords = {\@Plainkeywords}
     }
   }
-\if@notitle
-  %% \AtBeginDocument{\maketitle}
-\else
-  \AtBeginDocument{\maketitle}
-\fi
+
+\AtBeginDocument{\maketitle}
+
 %% commands
 \newcommand\code{\bgroup\@makeother\_\@makeother\~\@makeother\$\@codex}
 \def\@codex#1{{\normalfont\ttfamily\hyphenchar\font=-1 #1}\egroup}
