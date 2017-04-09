@@ -34,7 +34,7 @@
 \bibpunct{(}{)}{;}{a}{}{,}
 \bibliographystyle{dp}
 %% page layout
-\topmargin 0pt
+\topmargin 1.5in
 \textheight 46\baselineskip
 \advance\textheight by \topskip
 \oddsidemargin 0.1in
@@ -172,65 +172,74 @@
 %% required packages
 \RequirePackage{hyperref}
 
-%% new \maketitle
-\def\@myoddhead{
-  {\color{white} dp}\\[-1.42cm]
-  \hspace{-2em} \includegraphics[height=23mm,keepaspectratio]{dplogo} \hfill
-  \parbox[b][23mm]{118mm}{\hrule height 3pt
-   \center{
-   {\fontfamily{pzc} \fontsize{28}{32} \selectfont Journal of Statistical Software}
-   \vfill
-   {\it \small \@Month{} \@Year, Volume~\@Volume, \@Seriesname~\@Issue.%
-            \hfill \href{http://www.jstatsoft.org/}{http://www.jstatsoft.org/}}}\\[0.1cm]
-     \hrule height 3pt}}
-
-
-  \def\maketitle{
-    \@oddhead{\@myoddhead} \par
-   \begingroup
-     \def\thefootnote{\fnsymbol{footnote}}
-     \def\@makefnmark{\hbox to 0pt{$^{\@thefnmark}$\hss}}
-     \long\def\@makefntext##1{\parindent 1em\noindent
-                              \hbox to1.8em{\hss $\m@th ^{\@thefnmark}$}##1}
-     \@maketitle \@thanks
-   \endgroup
-   \setcounter{footnote}{0}
-
-     \thispagestyle{empty}
-        \markboth{\centerline{\@Shorttitle}}{\centerline{\@Hypersubject}}
-     \pagestyle{myheadings}
-
-   \let\maketitle\relax \let\@maketitle\relax
-   \gdef\@thanks{}\gdef\@author{}\gdef\@title{}\let\thanks\relax
+\def\maketitle{
+  {\color{white} \fontfamily{phv} \fontsize{38}{38} \selectfont CFPB Data Point:\\[25pt]
+  \@title}\\[40pt]
+  {\color{white} \fontfamily{phv} \fontsize{14}{14} \selectfont The CFPB Office of Research\par}
+  \newpage
+  This is another in an occasional series of publications from the Consumer Financial Protection Bureau's Office of Research. These publications are intended to further the Bureau's objective of providing an evidence-based perspective on consumer financial markets, consumer behavior, and regulations to inform the public discourse.
+  \newpage
   }
 
-  \def\@maketitle{\vbox{\hsize\textwidth \linewidth\hsize
-    \vskip 1in
-   {\centering
-   {\LARGE\bf \@title\par}
-   \vskip 0.2in plus 1fil minus 0.1in
-   {
-       \def\and{\unskip\enspace{\rm and}\enspace}%
-       \def\And{\end{tabular}\hss \egroup \hskip 1in plus 2fil
-          \hbox to 0pt\bgroup\hss \begin{tabular}[t]{c}\large\bf\rule{\z@}{24pt}\ignorespaces}%
-       \def\AND{\end{tabular}\hss\egroup \hfil\hfil\egroup
-          \vskip 0.1in plus 1fil minus 0.05in
-          \hbox to \linewidth\bgroup\rule{\z@}{10pt} \hfil\hfil
-          \hbox to 0pt\bgroup\hss \begin{tabular}[t]{c}\large\bf\rule{\z@}{24pt}\ignorespaces}
-       \hbox to \linewidth\bgroup\rule{\z@}{10pt} \hfil\hfil
-       \hbox to 0pt\bgroup\hss \begin{tabular}[t]{c}\large\bf\rule{\z@}{24pt}\@author
-       \end{tabular}\hss\egroup
-   \hfil\hfil\egroup}
-   \vskip 0.3in minus 0.1in
-   \hrule
-   \begin{abstract}
-   \@Abstract
-   \end{abstract}}
-   \textit{Keywords}:~\@Keywords.
-   \vskip 0.1in minus 0.05in
-   \hrule
-   \vskip 0.2in minus 0.1in
-  }}
+% %% new \maketitle
+% \def\@myoddhead{
+%   {\color{white} dp}\\[-1.42cm]
+%   \hspace{-2em} \includegraphics[height=23mm,keepaspectratio]{dplogo} \hfill
+%   \parbox[b][23mm]{118mm}{\hrule height 3pt
+%    \center{
+%    {\fontfamily{pzc} \fontsize{28}{32} \selectfont Journal of Statistical Software}
+%    \vfill
+%    {\it \small \@Month{} \@Year, Volume~\@Volume, \@Seriesname~\@Issue.%
+%             \hfill \href{http://www.jstatsoft.org/}{http://www.jstatsoft.org/}}}\\[0.1cm]
+%      \hrule height 3pt}}
+%
+%
+%   \def\maketitle{
+%     \@oddhead{\@myoddhead} \par
+%    \begingroup
+%      \def\thefootnote{\fnsymbol{footnote}}
+%      \def\@makefnmark{\hbox to 0pt{$^{\@thefnmark}$\hss}}
+%      \long\def\@makefntext##1{\parindent 1em\noindent
+%                               \hbox to1.8em{\hss $\m@th ^{\@thefnmark}$}##1}
+%      \@maketitle \@thanks
+%    \endgroup
+%    \setcounter{footnote}{0}
+%
+%      \thispagestyle{empty}
+%         \markboth{\centerline{\@Shorttitle}}{\centerline{\@Hypersubject}}
+%      \pagestyle{myheadings}
+%
+%    \let\maketitle\relax \let\@maketitle\relax
+%    \gdef\@thanks{}\gdef\@author{}\gdef\@title{}\let\thanks\relax
+%   }
+%
+%   \def\@maketitle{\vbox{\hsize\textwidth \linewidth\hsize
+%     \vskip 1in
+%    {\centering
+%    {\LARGE\bf \@title\par}
+%    \vskip 0.2in plus 1fil minus 0.1in
+%    {
+%        \def\and{\unskip\enspace{\rm and}\enspace}%
+%        \def\And{\end{tabular}\hss \egroup \hskip 1in plus 2fil
+%           \hbox to 0pt\bgroup\hss \begin{tabular}[t]{c}\large\bf\rule{\z@}{24pt}\ignorespaces}%
+%        \def\AND{\end{tabular}\hss\egroup \hfil\hfil\egroup
+%           \vskip 0.1in plus 1fil minus 0.05in
+%           \hbox to \linewidth\bgroup\rule{\z@}{10pt} \hfil\hfil
+%           \hbox to 0pt\bgroup\hss \begin{tabular}[t]{c}\large\bf\rule{\z@}{24pt}\ignorespaces}
+%        \hbox to \linewidth\bgroup\rule{\z@}{10pt} \hfil\hfil
+%        \hbox to 0pt\bgroup\hss \begin{tabular}[t]{c}\large\bf\rule{\z@}{24pt}\@author
+%        \end{tabular}\hss\egroup
+%    \hfil\hfil\egroup}
+%    \vskip 0.3in minus 0.1in
+%    \hrule
+%    \begin{abstract}
+%    \@Abstract
+%    \end{abstract}}
+%    \textit{Keywords}:~\@Keywords.
+%    \vskip 0.1in minus 0.05in
+%    \hrule
+%    \vskip 0.2in minus 0.1in
+%   }}
 
 %% sections, subsections, and subsubsections
 \newlength{\preXLskip}
