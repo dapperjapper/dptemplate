@@ -13,7 +13,6 @@
 \newif\if@article
 \newif\if@review
 \newif\if@shortnames
-\newif\if@nodp
 \newif\if@notitle
 \newif\if@noheadings
 \newif\if@nofooter
@@ -21,14 +20,12 @@
 \@articletrue
 \@reviewfalse
 \@shortnamesfalse
-\@nodpfalse
 \@notitlefalse
 \@noheadingsfalse
 \@nofooterfalse
 
 \DeclareOption{article}{\@articletrue}
 \DeclareOption{shortnames}{\@shortnamestrue}
-\DeclareOption{nodp}{\@nodptrue}
 \DeclareOption{notitle}{\@notitletrue}
 \DeclareOption{noheadings}{\@noheadingstrue}
 \DeclareOption{nofooter}{\@nofootertrue}
@@ -165,12 +162,6 @@
 \newcommand{\makefooter}{%
   \vspace{\footerskip}
 
-  \if@nodp
-    \begin{samepage}
-    \textbf{\large \@Footername: \nopagebreak}\\[.3\baselineskip] \nopagebreak
-    \@Address \nopagebreak
-    \end{samepage}
-  \else
     \begin{samepage}
     \textbf{\large \@Footername: \nopagebreak}\\[.3\baselineskip] \nopagebreak
     \@Address \nopagebreak
@@ -192,7 +183,6 @@
     \vspace{.3\baselineskip}
     \hrule
     \end{samepage}
-  \fi
 }
 \if@nofooter
   %% \AtEndDocument{\makefooter}
@@ -216,11 +206,7 @@
      \hrule height 3pt}}
 \if@review
   \renewcommand{\maketitle}{
-  \if@nodp
-    %% \@oddhead{\@myoddhead}\\[3\baselineskip]
-  \else
     \@oddhead{\@myoddhead}\\[3\baselineskip]
-  \fi
     {\large
     \noindent
     Reviewer: \@Reviewer
@@ -237,20 +223,12 @@
     }
 
     \thispagestyle{empty}
-    \if@nodp
-      \markboth{\centerline{\@Shorttitle}}{\centerline{\@Hyperauthor}}
-    \else
       \markboth{\centerline{\@Shorttitle}}{\centerline{\@Hypersubject}}
-    \fi
     \pagestyle{myheadings}
   }
 \else
   \def\maketitle{
-  \if@nodp
-    %% \@oddhead{\@myoddhead} \par
-  \else
     \@oddhead{\@myoddhead} \par
-  \fi
    \begingroup
      \def\thefootnote{\fnsymbol{footnote}}
      \def\@makefnmark{\hbox to 0pt{$^{\@thefnmark}$\hss}}
@@ -264,11 +242,7 @@
     %% \markboth{\centerline{\@Shorttitle}}{\centerline{\@Hypersubject}}
     \else
      \thispagestyle{empty}
-      \if@nodp
-        \markboth{\centerline{\@Shorttitle}}{\centerline{\@Hyperauthor}}
-      \else
         \markboth{\centerline{\@Shorttitle}}{\centerline{\@Hypersubject}}
-      \fi
      \pagestyle{myheadings}
    \fi
 
@@ -277,11 +251,7 @@
   }
 
   \def\@maketitle{\vbox{\hsize\textwidth \linewidth\hsize
-  \if@nodp
-    %% \vskip 1in
-  \else
     \vskip 1in
-  \fi
    {\centering
    {\LARGE\bf \@title\par}
    \vskip 0.2in plus 1fil minus 0.1in
@@ -397,15 +367,6 @@
     pdfview = {XYZ null null null}
   }
 \fi
-\if@nodp
-  \AtBeginDocument{
-    \hypersetup{%
-      pdfauthor = {\@Hyperauthor},
-      pdftitle = {\@Plaintitle},
-      pdfkeywords = {\@Plainkeywords}
-    }
-  }
-\else
   \AtBeginDocument{
     \hypersetup{%
       pdfauthor = {\@Hyperauthor},
@@ -414,7 +375,6 @@
       pdfkeywords = {\@Plainkeywords}
     }
   }
-\fi
 \if@notitle
   %% \AtBeginDocument{\maketitle}
 \else
