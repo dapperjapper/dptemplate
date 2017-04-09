@@ -71,7 +71,7 @@
 \newcommand{\Pubyear}[1]{\def\@Pubyear{#1}}
 \newcommand{\ISBN}[1]{\def\@ISBN{#1}}
 \newcommand{\Pages}[1]{\def\@Pages{#1}}
-\newcommand{\Price}[1]{\def\@Price{#1}}
+%%\newcommand{\Price}[1]{\def\@Price{#1}}
 \newcommand{\Plainreviewer}[1]{\def\@Plainreviewer{#1}}
 \newcommand{\Softwaretitle}[1]{\def\@Softwaretitle{#1}}
 \newcommand{\URL}[1]{\def\@URL{#1}}
@@ -111,7 +111,7 @@
 \Pubyear{YYY}
 \ISBN{x-xxxxx-xxx-x}
 \Pages{xv + 123}
-\Price{USD 69.95 (P)}
+%%\Price{USD 69.95 (P)}
 \URL{http://link/to/webpage/}
 \if@article
   \Seriesname{Issue}
