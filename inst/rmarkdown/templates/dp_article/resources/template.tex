@@ -57,11 +57,13 @@
 %$preamble$
 
 \fancyhf{}
-\fancyfoot[L]{\fontfamily{phv} \fontsize{8}{8} \selectfont \thepage CFPB Data Point:}
+%\fancyfoot[L]{\fontfamily{phv} \fontsize{8}{8} \selectfont \thepage\hspace{20pt}CFPB Data Point:}
 \renewcommand{\headrulewidth}{0pt}
 \pagestyle{fancy}
 
 \begin{document}
+\maketitle
+\fancyfoot[L]{\fontfamily{phv} \fontsize{8}{8} \selectfont \thepage\hspace{20pt}CFPB Data Point:}
 
 $body$
 

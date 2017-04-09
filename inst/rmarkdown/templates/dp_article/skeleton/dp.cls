@@ -319,7 +319,7 @@
     }
   }
 
-\AtBeginDocument{\maketitle}
+%\AtBeginDocument{\maketitle}
 
 %% commands
 \newcommand\code{\bgroup\@makeother\_\@makeother\~\@makeother\$\@codex}
