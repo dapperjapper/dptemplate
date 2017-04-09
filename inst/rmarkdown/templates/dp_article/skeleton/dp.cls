@@ -138,36 +138,36 @@
 \newenvironment{CodeChunk}{}{}
 \setkeys{Gin}{width=0.8\textwidth}
 %% footer
-\newlength{\footerskip}
-\setlength{\footerskip}{2.5\baselineskip plus 2ex minus 0.5ex}
-
-\newcommand{\makefooter}{%
-  \vspace{\footerskip}
-
-    \begin{samepage}
-    \textbf{\large \@Footername: \nopagebreak}\\[.3\baselineskip] \nopagebreak
-    \@Address \nopagebreak
-    \vfill
-    \hrule \nopagebreak
-    \vspace{.1\baselineskip}
-    {\fontfamily{pzc} \fontsize{13}{15} \selectfont Journal of Statistical Software}
-    \hfill
-    \url{http://www.jstatsoft.org/}\\ \nopagebreak
-    published by the American Statistical Association
-    \hfill
-    \url{http://www.amstat.org/}\\[.3\baselineskip] \nopagebreak
-    {Volume~\@Volume, \@Seriesname~\@Issue}
-    \hfill
-    \@Firstdate\\ \nopagebreak
-    {\@Month{} \@Year}
-    \hfill
-    \@Seconddate  \nopagebreak
-    \vspace{.3\baselineskip}
-    \hrule
-    \end{samepage}
-}
-
-\AtEndDocument{\makefooter}
+% \newlength{\footerskip}
+% \setlength{\footerskip}{2.5\baselineskip plus 2ex minus 0.5ex}
+%
+% \newcommand{\makefooter}{%
+%   \vspace{\footerskip}
+%
+%     \begin{samepage}
+%     \textbf{\large \@Footername: \nopagebreak}\\[.3\baselineskip] \nopagebreak
+%     \@Address \nopagebreak
+%     \vfill
+%     \hrule \nopagebreak
+%     \vspace{.1\baselineskip}
+%     {\fontfamily{pzc} \fontsize{13}{15} \selectfont Journal of Statistical Software}
+%     \hfill
+%     \url{http://www.jstatsoft.org/}\\ \nopagebreak
+%     published by the American Statistical Association
+%     \hfill
+%     \url{http://www.amstat.org/}\\[.3\baselineskip] \nopagebreak
+%     {Volume~\@Volume, \@Seriesname~\@Issue}
+%     \hfill
+%     \@Firstdate\\ \nopagebreak
+%     {\@Month{} \@Year}
+%     \hfill
+%     \@Seconddate  \nopagebreak
+%     \vspace{.3\baselineskip}
+%     \hrule
+%     \end{samepage}
+% }
+%
+% \AtEndDocument{\makefooter}
 
 %% required packages
 \RequirePackage{hyperref}
