@@ -1,0 +1,4 @@
+name: Data Point
+description: >
+  Template for creating a Data Point
+create_dir: true
