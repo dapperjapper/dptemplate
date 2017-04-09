@@ -13,19 +13,13 @@
 \newif\if@article
 \newif\if@review
 \newif\if@shortnames
-\newif\if@noheadings
-\newif\if@nofooter
 
 \@articletrue
 \@reviewfalse
 \@shortnamesfalse
-\@noheadingsfalse
-\@nofooterfalse
 
 \DeclareOption{article}{\@articletrue}
 \DeclareOption{shortnames}{\@shortnamestrue}
-\DeclareOption{noheadings}{\@noheadingstrue}
-\DeclareOption{nofooter}{\@nofootertrue}
 
 \ProcessOptions
 \LoadClass[11pt,a4paper,twoside]{article}
@@ -181,11 +175,8 @@
     \hrule
     \end{samepage}
 }
-\if@nofooter
-  %% \AtEndDocument{\makefooter}
-\else
-  \AtEndDocument{\makefooter}
-\fi
+
+\AtEndDocument{\makefooter}
 
 %% required packages
 \RequirePackage{hyperref}
@@ -235,13 +226,9 @@
    \endgroup
    \setcounter{footnote}{0}
 
-   \if@noheadings
-    %% \markboth{\centerline{\@Shorttitle}}{\centerline{\@Hypersubject}}
-    \else
      \thispagestyle{empty}
         \markboth{\centerline{\@Shorttitle}}{\centerline{\@Hypersubject}}
      \pagestyle{myheadings}
-   \fi
 
    \let\maketitle\relax \let\@maketitle\relax
    \gdef\@thanks{}\gdef\@author{}\gdef\@title{}\let\thanks\relax
