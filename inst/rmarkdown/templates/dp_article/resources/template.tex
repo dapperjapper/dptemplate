@@ -62,8 +62,19 @@
 \pagestyle{fancy}
 
 \begin{document}
+\newgeometry{top=2.5in}
 \maketitle
-\fancyfoot[L]{\fontfamily{phv} \fontsize{8}{8} \selectfont \thepage\hspace{20pt}CFPB Data Point:}
+\restoregeometry
+\fancyfoot[L]{\fontfamily{phv} \fontsize{8}{8} \selectfont \thepage\hspace{20pt}CFPB Data Point: $title.formatted$}
+\begin{itemize}
+  $for(author)$
+    \item $author.name$
+  $endfor$
+\end{itemize}
+
+This is another in an occasional series of publications from the Consumer Financial Protection Bureau's Office of Research. These publications are intended to further the Bureau's objective of providing an evidence-based perspective on consumer financial markets, consumer behavior, and regulations to inform the public discourse.
+\newpage
+
 
 $body$
 

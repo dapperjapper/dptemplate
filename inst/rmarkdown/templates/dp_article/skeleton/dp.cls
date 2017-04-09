@@ -177,8 +177,6 @@
   \@title}\\[40pt]
   {\color{white} \fontfamily{phv} \fontsize{14}{14} \selectfont The CFPB Office of Research\par}
   \newpage
-  This is another in an occasional series of publications from the Consumer Financial Protection Bureau's Office of Research. These publications are intended to further the Bureau's objective of providing an evidence-based perspective on consumer financial markets, consumer behavior, and regulations to inform the public discourse.
-  \newpage
   }
 
 % %% new \maketitle
