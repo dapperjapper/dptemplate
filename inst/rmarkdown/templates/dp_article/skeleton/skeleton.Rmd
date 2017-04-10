@@ -23,6 +23,7 @@ keywords:
   plain:     [keywords, not capitalized, Java]
 preamble: >
   \usepackage{amsmath}
+date: "`r format(Sys.Date(), '%B %Y')`"
 output: dptemplate::dp_article
 ---
 

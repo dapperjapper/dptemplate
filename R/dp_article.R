@@ -23,7 +23,7 @@ dp_article <- function(..., keep_tex = TRUE) {
   template <- find_resource("dp_article", "template.tex")
 
   base <- inherit_pdf_document(
-    ..., template = template, keep_tex = keep_tex, citation_package = 'natbib'
+    ..., toc = TRUE, template = template, keep_tex = keep_tex, citation_package = 'natbib'
   )
 
   # Mostly copied from knitr::render_sweave

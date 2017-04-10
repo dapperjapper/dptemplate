@@ -33,17 +33,19 @@
 \fi
 \bibpunct{(}{)}{;}{a}{}{,}
 \bibliographystyle{dp}
-%% page layout
-\topmargin 1.5in
-\textheight 46\baselineskip
-\advance\textheight by \topskip
-\oddsidemargin 0.1in
-\evensidemargin 0.15in
-\marginparwidth 1in
-\oddsidemargin 0.125in
-\evensidemargin 0.125in
-\marginparwidth 0.75in
-\textwidth 6.125in
+
+% %% page layout
+% \topmargin 1.5in
+% \textheight 46\baselineskip
+% \advance\textheight by \topskip
+% \oddsidemargin 0.1in
+% \evensidemargin 0.15in
+% \marginparwidth 1in
+% \oddsidemargin 0.125in
+% \evensidemargin 0.125in
+% \marginparwidth 0.75in
+% \textwidth 6.125in
+
 %% paragraphs
 \setlength{\parskip}{0.7ex plus0.1ex minus0.1ex}
 \setlength{\parindent}{0em}
@@ -289,9 +291,9 @@
   \textbf{\large #1} \nopagebreak
   \vskip \postSskip \nopagebreak}
 
-\renewcommand{\section}{\secdef \dpsec \dpsecnn}
-\renewcommand{\subsection}{\secdef \dpsubsec \dpsubsecnn}
-\renewcommand{\subsubsection}{\secdef \dpsubsubsec \dpsubsubsecnn}
+%\renewcommand{\section}{\secdef \dpsec \dpsecnn}
+%\renewcommand{\subsection}{\secdef \dpsubsec \dpsubsecnn}
+%\renewcommand{\subsubsection}{\secdef \dpsubsubsec \dpsubsubsecnn}
 
 %% colors
 \definecolor{Red}{rgb}{0.5,0,0}
