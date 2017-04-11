@@ -1,25 +1,54 @@
-\documentclass[article$if(classoption)$,$classoption$$endif$]{dp}
+\documentclass[12pt,letterpaper,twoside]{article}
+\RequirePackage{graphicx,color,ae,fancyvrb}
+\RequirePackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{wallpaper}
 \usepackage[none]{hyphenat}
 \usepackage{fancyhdr}
-\usepackage[letterpaper,left=1in,right=1in,top=1in,bottom=1.25in,footskip=.5in]{geometry}
+\usepackage[letterpaper,left=1in,right=1in,top=1in,bottom=1.25in,footskip=.6in]{geometry}
 \usepackage{enumitem}
 \usepackage[geometry]{ifsym}
 \usepackage{tocbibind}
 \usepackage{tocloft}
 \usepackage{sectsty}
 
+%% Sweave(-like)
+%% These commands were taken from the rticles package
+\DefineVerbatimEnvironment{Sinput}{Verbatim}{fontshape=sl}
+\DefineVerbatimEnvironment{Soutput}{Verbatim}{}
+\DefineVerbatimEnvironment{Scode}{Verbatim}{fontshape=sl}
+\newenvironment{Schunk}{}{}
+\DefineVerbatimEnvironment{Code}{Verbatim}{}
+\DefineVerbatimEnvironment{CodeInput}{Verbatim}{fontshape=sl}
+\DefineVerbatimEnvironment{CodeOutput}{Verbatim}{}
+\newenvironment{CodeChunk}{}{}
+\setkeys{Gin}{width=0.8\textwidth}
+
+%% paragraphs
+\setlength{\parskip}{0.7ex plus0.1ex minus0.1ex}
+\setlength{\parindent}{0em}
+
+\def\maketitle{
+  {\color{white} \fontfamily{phv} \fontsize{38}{38} \selectfont CFPB Data Point:\\[25pt]
+  $title$}\\[40pt]
+  {\noindent \color{white} \fontfamily{phv} \fontsize{14}{14} \selectfont The CFPB Office of Research\par}
+  \newpage
+  }
+
 \addtolength{\wpXoffset}{-2in}
 \addtolength{\wpYoffset}{-4.7in}
 
-\renewcommand{\contentsname}{\fontfamily{phv} \fontsize{32}{32} \selectfont Table of contents}
+\renewcommand{\contentsname}{Table of contents}
 \renewcommand\cftsecleader{\cftdotfill{\cftdotsep}}
 
 \sectionfont{\mdseries\fontfamily{phv} \fontsize{32}{32} \selectfont}
 \makeatletter
 \renewcommand{\@seccntformat}[1]{\csname the#1\endcsname.\quad}
 \makeatother
+
+% Start each section on a new page
+\let\stdsection\section
+\renewcommand\section{\newpage\vspace*{1.5in}\stdsection}
 
 \ThisULCornerWallPaper{1}{dataPointCoverBackground}
 \ThisCenterWallPaper{0.35}{cfpblogo_wide}
@@ -88,7 +117,7 @@
 
 % Author Page
 \fancyfoot[R]{}
-\fancyfoot[L]{\fontfamily{phv} \fontsize{8}{8} \selectfont \thepage\hspace{20pt}CFPB Data Point: $title.formatted$}
+\fancyfoot[L]{\fontfamily{phv} \fontsize{8}{8} \selectfont \thepage\hspace{20pt}CFPB DATA POINT: \uppercase{$title.formatted$}}
 \begin{itemize}[label=\FilledSmallSquare]
   $for(author)$
     \item $author.name$
@@ -98,7 +127,14 @@
 This is another in an occasional series of publications from the Consumer Financial Protection Bureau's Office of Research. These publications are intended to further the Bureau's objective of providing an evidence-based perspective on consumer financial markets, consumer behavior, and regulations to inform the public discourse.
 \newpage
 
+\clearpage
+{
+  \pagestyle{empty}
+  \fancyfoot[L]{\fontfamily{phv} \fontsize{8}{8} \selectfont \thepage\hspace{20pt}CFPB DATA POINT: \uppercase{$title.formatted$}}
+\vspace*{1.5in}
 \tableofcontents
+\thispagestyle{empty}
+}
 \newpage
 
 

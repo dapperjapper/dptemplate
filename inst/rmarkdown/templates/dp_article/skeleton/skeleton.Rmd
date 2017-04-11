@@ -9,18 +9,7 @@ author:
     url: http://rstudio.com
   - name: Second Author
     affiliation: Affiliation
-title:
-  formatted: "A Capitalized Title: Something about a Package \\pkg{foo}"
-  # If you use tex in the formatted title, also supply version without
-  plain:     "A Capitalized Title: Something about a Package foo"
-  # For running headers, if needed
-  short:     "\\pkg{foo}: A Capitalized Title"
-abstract: >
-  The abstract of the article.
-keywords:
-  # at least one keyword must be supplied
-  formatted: [keywords, not capitalized, "\\proglang{Java}"]
-  plain:     [keywords, not capitalized, Java]
+title: "Needs a Title"
 preamble: >
   \usepackage{amsmath}
 date: "`r format(Sys.Date(), '%B %Y')`"
@@ -29,15 +18,7 @@ output: dptemplate::dp_article
 
 # Introduction
 
-This template demonstrates some of the basic latex you'll need to know to create a JSS article.
-
-## Code formatting
-
-Don't use markdown, instead use the more precise latex commands:
-
-* \proglang{Java}
-* \pkg{plyr}
-* \code{print("abc")}
+This template provides some of the basic command you will need to generate a CFPB Data Point directly from R.
 
 # R code
 
