@@ -1,14 +1,7 @@
 ---
 author:
-  - name: FirstName LastName
-    affiliation: University/Company
-    address: >
-      First line
-      Second line
-    email: \email{name@company.com}
-    url: http://rstudio.com
+  - name: First Author
   - name: Second Author
-    affiliation: Affiliation
 title: "Needs a Title"
 preamble: >
   \usepackage{amsmath}

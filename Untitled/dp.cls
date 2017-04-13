@@ -11,39 +11,16 @@
 \ProvidesClass{dp}[\filedate\space\fileversion\space dp class by Ken Brevoort]
 %% options
 \newif\if@article
-\newif\if@bookreview
-\newif\if@softwarereview
-\newif\if@review
 \newif\if@shortnames
-\newif\if@nodp
-\newif\if@notitle
-\newif\if@noheadings
-\newif\if@nofooter
 
 \@articletrue
-\@bookreviewfalse
-\@softwarereviewfalse
-\@reviewfalse
 \@shortnamesfalse
-\@nodpfalse
-\@notitlefalse
-\@noheadingsfalse
-\@nofooterfalse
 
-\DeclareOption{article}{\@articletrue%
-  \@bookreviewfalse \@softwarereviewfalse}
-\DeclareOption{bookreview}{\@articlefalse%
-  \@bookreviewtrue \@softwarereviewfalse}
-\DeclareOption{softwarereview}{\@articlefalse%
-  \@bookreviewfalse \@softwarereviewtrue}
+\DeclareOption{article}{\@articletrue}
 \DeclareOption{shortnames}{\@shortnamestrue}
-\DeclareOption{nodp}{\@nodptrue}
-\DeclareOption{notitle}{\@notitletrue}
-\DeclareOption{noheadings}{\@noheadingstrue}
-\DeclareOption{nofooter}{\@nofootertrue}
 
 \ProcessOptions
-\LoadClass[11pt,a4paper,twoside]{article}
+\LoadClass[11pt,letterpaper,twoside]{article}
 %% required packages
 \RequirePackage{graphicx,color,ae,fancyvrb}
 \RequirePackage[T1]{fontenc}
@@ -56,17 +33,19 @@
 \fi
 \bibpunct{(}{)}{;}{a}{}{,}
 \bibliographystyle{dp}
-%% page layout
-\topmargin 0pt
-\textheight 46\baselineskip
-\advance\textheight by \topskip
-\oddsidemargin 0.1in
-\evensidemargin 0.15in
-\marginparwidth 1in
-\oddsidemargin 0.125in
-\evensidemargin 0.125in
-\marginparwidth 0.75in
-\textwidth 6.125in
+
+% %% page layout
+% \topmargin 1.5in
+% \textheight 46\baselineskip
+% \advance\textheight by \topskip
+% \oddsidemargin 0.1in
+% \evensidemargin 0.15in
+% \marginparwidth 1in
+% \oddsidemargin 0.125in
+% \evensidemargin 0.125in
+% \marginparwidth 0.75in
+% \textwidth 6.125in
+
 %% paragraphs
 \setlength{\parskip}{0.7ex plus0.1ex minus0.1ex}
 \setlength{\parindent}{0em}
@@ -94,7 +73,7 @@
 \newcommand{\Pubyear}[1]{\def\@Pubyear{#1}}
 \newcommand{\ISBN}[1]{\def\@ISBN{#1}}
 \newcommand{\Pages}[1]{\def\@Pages{#1}}
-\newcommand{\Price}[1]{\def\@Price{#1}}
+%%\newcommand{\Price}[1]{\def\@Price{#1}}
 \newcommand{\Plainreviewer}[1]{\def\@Plainreviewer{#1}}
 \newcommand{\Softwaretitle}[1]{\def\@Softwaretitle{#1}}
 \newcommand{\URL}[1]{\def\@URL{#1}}
@@ -134,7 +113,7 @@
 \Pubyear{YYY}
 \ISBN{x-xxxxx-xxx-x}
 \Pages{xv + 123}
-\Price{USD 69.95 (P)}
+%%\Price{USD 69.95 (P)}
 \URL{http://link/to/webpage/}
 \if@article
   \Seriesname{Issue}
@@ -144,19 +123,12 @@
   \Plainkeywords{\@Keywords}
 \fi
 
-\if@review
-  \Hyperauthor{\@Plainreviewer}
-  \Keywords{}
-  \Footername{Reviewer}
-  \Firstdate{\textit{Published:} \@Submitdate}
-  \Seconddate{}
-\else
-  \Hyperauthor{\@Plainauthor}
-  \Keywords{---!!!---at least one keyword is required---!!!---}
-  \Footername{Affiliation}
-  \Firstdate{\textit{Submitted:} \@Submitdate}
-  \Seconddate{\textit{Accepted:} \@Acceptdate}
-\fi
+\Hyperauthor{\@Plainauthor}
+\Keywords{---!!!---at least one keyword is required---!!!---}
+\Footername{Affiliation}
+\Firstdate{\textit{Submitted:} \@Submitdate}
+\Seconddate{\textit{Accepted:} \@Acceptdate}
+
 %% Sweave(-like)
 \DefineVerbatimEnvironment{Sinput}{Verbatim}{fontshape=sl}
 \DefineVerbatimEnvironment{Soutput}{Verbatim}{}
@@ -168,155 +140,107 @@
 \newenvironment{CodeChunk}{}{}
 \setkeys{Gin}{width=0.8\textwidth}
 %% footer
-\newlength{\footerskip}
-\setlength{\footerskip}{2.5\baselineskip plus 2ex minus 0.5ex}
-
-\newcommand{\makefooter}{%
-  \vspace{\footerskip}
-
-  \if@nodp
-    \begin{samepage}
-    \textbf{\large \@Footername: \nopagebreak}\\[.3\baselineskip] \nopagebreak
-    \@Address \nopagebreak
-    \end{samepage}
-  \else
-    \begin{samepage}
-    \textbf{\large \@Footername: \nopagebreak}\\[.3\baselineskip] \nopagebreak
-    \@Address \nopagebreak
-    \vfill
-    \hrule \nopagebreak
-    \vspace{.1\baselineskip}
-    {\fontfamily{pzc} \fontsize{13}{15} \selectfont Journal of Statistical Software}
-    \hfill
-    \url{http://www.jstatsoft.org/}\\ \nopagebreak
-    published by the American Statistical Association
-    \hfill
-    \url{http://www.amstat.org/}\\[.3\baselineskip] \nopagebreak
-    {Volume~\@Volume, \@Seriesname~\@Issue}
-    \hfill
-    \@Firstdate\\ \nopagebreak
-    {\@Month{} \@Year}
-    \hfill
-    \@Seconddate  \nopagebreak
-    \vspace{.3\baselineskip}
-    \hrule
-    \end{samepage}
-  \fi
-}
-\if@nofooter
-  %% \AtEndDocument{\makefooter}
-\else
-  \AtEndDocument{\makefooter}
-\fi
+% \newlength{\footerskip}
+% \setlength{\footerskip}{2.5\baselineskip plus 2ex minus 0.5ex}
+%
+% \newcommand{\makefooter}{%
+%   \vspace{\footerskip}
+%
+%     \begin{samepage}
+%     \textbf{\large \@Footername: \nopagebreak}\\[.3\baselineskip] \nopagebreak
+%     \@Address \nopagebreak
+%     \vfill
+%     \hrule \nopagebreak
+%     \vspace{.1\baselineskip}
+%     {\fontfamily{pzc} \fontsize{13}{15} \selectfont Journal of Statistical Software}
+%     \hfill
+%     \url{http://www.jstatsoft.org/}\\ \nopagebreak
+%     published by the American Statistical Association
+%     \hfill
+%     \url{http://www.amstat.org/}\\[.3\baselineskip] \nopagebreak
+%     {Volume~\@Volume, \@Seriesname~\@Issue}
+%     \hfill
+%     \@Firstdate\\ \nopagebreak
+%     {\@Month{} \@Year}
+%     \hfill
+%     \@Seconddate  \nopagebreak
+%     \vspace{.3\baselineskip}
+%     \hrule
+%     \end{samepage}
+% }
+%
+% \AtEndDocument{\makefooter}
 
 %% required packages
 \RequirePackage{hyperref}
 
-%% new \maketitle
-\def\@myoddhead{
-  {\color{white} dp}\\[-1.42cm]
-  \hspace{-2em} \includegraphics[height=23mm,keepaspectratio]{dplogo} \hfill
-  \parbox[b][23mm]{118mm}{\hrule height 3pt
-   \center{
-   {\fontfamily{pzc} \fontsize{28}{32} \selectfont Journal of Statistical Software}
-   \vfill
-   {\it \small \@Month{} \@Year, Volume~\@Volume, \@Seriesname~\@Issue.%
-            \hfill \href{http://www.jstatsoft.org/}{http://www.jstatsoft.org/}}}\\[0.1cm]
-     \hrule height 3pt}}
-\if@review
-  \renewcommand{\maketitle}{
-  \if@nodp
-    %% \@oddhead{\@myoddhead}\\[3\baselineskip]
-  \else
-    \@oddhead{\@myoddhead}\\[3\baselineskip]
-  \fi
-    {\large
-    \noindent
-    Reviewer: \@Reviewer
-    \vspace{\baselineskip}
-    \hrule
-    \vspace{\baselineskip}
-    \textbf{\@Booktitle}
-    \begin{quotation} \noindent
-    \@Reviewauthor
-    \end{quotation}
-    \vspace{0.7\baselineskip}
-    \hrule
-    \vspace{1.3\baselineskip}
-    }
-
-    \thispagestyle{empty}
-    \if@nodp
-      \markboth{\centerline{\@Shorttitle}}{\centerline{\@Hyperauthor}}
-    \else
-      \markboth{\centerline{\@Shorttitle}}{\centerline{\@Hypersubject}}
-    \fi
-    \pagestyle{myheadings}
-  }
-\else
-  \def\maketitle{
-  \if@nodp
-    %% \@oddhead{\@myoddhead} \par
-  \else
-    \@oddhead{\@myoddhead} \par
-  \fi
-   \begingroup
-     \def\thefootnote{\fnsymbol{footnote}}
-     \def\@makefnmark{\hbox to 0pt{$^{\@thefnmark}$\hss}}
-     \long\def\@makefntext##1{\parindent 1em\noindent
-                              \hbox to1.8em{\hss $\m@th ^{\@thefnmark}$}##1}
-     \@maketitle \@thanks
-   \endgroup
-   \setcounter{footnote}{0}
-
-   \if@noheadings
-    %% \markboth{\centerline{\@Shorttitle}}{\centerline{\@Hypersubject}}
-    \else
-     \thispagestyle{empty}
-      \if@nodp
-        \markboth{\centerline{\@Shorttitle}}{\centerline{\@Hyperauthor}}
-      \else
-        \markboth{\centerline{\@Shorttitle}}{\centerline{\@Hypersubject}}
-      \fi
-     \pagestyle{myheadings}
-   \fi
-
-   \let\maketitle\relax \let\@maketitle\relax
-   \gdef\@thanks{}\gdef\@author{}\gdef\@title{}\let\thanks\relax
+\def\maketitle{
+  {\color{white} \fontfamily{phv} \fontsize{38}{38} \selectfont CFPB Data Point:\\[25pt]
+  \@title}\\[40pt]
+  {\color{white} \fontfamily{phv} \fontsize{14}{14} \selectfont The CFPB Office of Research\par}
+  \newpage
   }
 
-  \def\@maketitle{\vbox{\hsize\textwidth \linewidth\hsize
-  \if@nodp
-    %% \vskip 1in
-  \else
-    \vskip 1in
-  \fi
-   {\centering
-   {\LARGE\bf \@title\par}
-   \vskip 0.2in plus 1fil minus 0.1in
-   {
-       \def\and{\unskip\enspace{\rm and}\enspace}%
-       \def\And{\end{tabular}\hss \egroup \hskip 1in plus 2fil
-          \hbox to 0pt\bgroup\hss \begin{tabular}[t]{c}\large\bf\rule{\z@}{24pt}\ignorespaces}%
-       \def\AND{\end{tabular}\hss\egroup \hfil\hfil\egroup
-          \vskip 0.1in plus 1fil minus 0.05in
-          \hbox to \linewidth\bgroup\rule{\z@}{10pt} \hfil\hfil
-          \hbox to 0pt\bgroup\hss \begin{tabular}[t]{c}\large\bf\rule{\z@}{24pt}\ignorespaces}
-       \hbox to \linewidth\bgroup\rule{\z@}{10pt} \hfil\hfil
-       \hbox to 0pt\bgroup\hss \begin{tabular}[t]{c}\large\bf\rule{\z@}{24pt}\@author
-       \end{tabular}\hss\egroup
-   \hfil\hfil\egroup}
-   \vskip 0.3in minus 0.1in
-   \hrule
-   \begin{abstract}
-   \@Abstract
-   \end{abstract}}
-   \textit{Keywords}:~\@Keywords.
-   \vskip 0.1in minus 0.05in
-   \hrule
-   \vskip 0.2in minus 0.1in
-  }}
-\fi
+% %% new \maketitle
+% \def\@myoddhead{
+%   {\color{white} dp}\\[-1.42cm]
+%   \hspace{-2em} \includegraphics[height=23mm,keepaspectratio]{dplogo} \hfill
+%   \parbox[b][23mm]{118mm}{\hrule height 3pt
+%    \center{
+%    {\fontfamily{pzc} \fontsize{28}{32} \selectfont Journal of Statistical Software}
+%    \vfill
+%    {\it \small \@Month{} \@Year, Volume~\@Volume, \@Seriesname~\@Issue.%
+%             \hfill \href{http://www.jstatsoft.org/}{http://www.jstatsoft.org/}}}\\[0.1cm]
+%      \hrule height 3pt}}
+%
+%
+%   \def\maketitle{
+%     \@oddhead{\@myoddhead} \par
+%    \begingroup
+%      \def\thefootnote{\fnsymbol{footnote}}
+%      \def\@makefnmark{\hbox to 0pt{$^{\@thefnmark}$\hss}}
+%      \long\def\@makefntext##1{\parindent 1em\noindent
+%                               \hbox to1.8em{\hss $\m@th ^{\@thefnmark}$}##1}
+%      \@maketitle \@thanks
+%    \endgroup
+%    \setcounter{footnote}{0}
+%
+%      \thispagestyle{empty}
+%         \markboth{\centerline{\@Shorttitle}}{\centerline{\@Hypersubject}}
+%      \pagestyle{myheadings}
+%
+%    \let\maketitle\relax \let\@maketitle\relax
+%    \gdef\@thanks{}\gdef\@author{}\gdef\@title{}\let\thanks\relax
+%   }
+%
+%   \def\@maketitle{\vbox{\hsize\textwidth \linewidth\hsize
+%     \vskip 1in
+%    {\centering
+%    {\LARGE\bf \@title\par}
+%    \vskip 0.2in plus 1fil minus 0.1in
+%    {
+%        \def\and{\unskip\enspace{\rm and}\enspace}%
+%        \def\And{\end{tabular}\hss \egroup \hskip 1in plus 2fil
+%           \hbox to 0pt\bgroup\hss \begin{tabular}[t]{c}\large\bf\rule{\z@}{24pt}\ignorespaces}%
+%        \def\AND{\end{tabular}\hss\egroup \hfil\hfil\egroup
+%           \vskip 0.1in plus 1fil minus 0.05in
+%           \hbox to \linewidth\bgroup\rule{\z@}{10pt} \hfil\hfil
+%           \hbox to 0pt\bgroup\hss \begin{tabular}[t]{c}\large\bf\rule{\z@}{24pt}\ignorespaces}
+%        \hbox to \linewidth\bgroup\rule{\z@}{10pt} \hfil\hfil
+%        \hbox to 0pt\bgroup\hss \begin{tabular}[t]{c}\large\bf\rule{\z@}{24pt}\@author
+%        \end{tabular}\hss\egroup
+%    \hfil\hfil\egroup}
+%    \vskip 0.3in minus 0.1in
+%    \hrule
+%    \begin{abstract}
+%    \@Abstract
+%    \end{abstract}}
+%    \textit{Keywords}:~\@Keywords.
+%    \vskip 0.1in minus 0.05in
+%    \hrule
+%    \vskip 0.2in minus 0.1in
+%   }}
+
 %% sections, subsections, and subsubsections
 \newlength{\preXLskip}
 \newlength{\preLskip}
@@ -367,32 +291,13 @@
   \textbf{\large #1} \nopagebreak
   \vskip \postSskip \nopagebreak}
 
-\if@review
-  \renewcommand{\section}{\secdef \dpsimplesec \dpsimplesecnn}
-  \renewcommand{\subsection}{\secdef \dpsimplesec \dpsimplesecnn}
-  \renewcommand{\subsubsection}{\secdef \dpsimplesec \dpsimplesecnn}
-\else
-  \renewcommand{\section}{\secdef \dpsec \dpsecnn}
-  \renewcommand{\subsection}{\secdef \dpsubsec \dpsubsecnn}
-  \renewcommand{\subsubsection}{\secdef \dpsubsubsec \dpsubsubsecnn}
-\fi
+%\renewcommand{\section}{\secdef \dpsec \dpsecnn}
+%\renewcommand{\subsection}{\secdef \dpsubsec \dpsubsecnn}
+%\renewcommand{\subsubsection}{\secdef \dpsubsubsec \dpsubsubsecnn}
+
 %% colors
 \definecolor{Red}{rgb}{0.5,0,0}
 \definecolor{Blue}{rgb}{0,0,0.5}
-\if@review
-  \hypersetup{%
-    hyperindex = {true},
-    colorlinks = {true},
-    linktocpage = {true},
-    plainpages = {false},
-    linkcolor = {Blue},
-    citecolor = {Blue},
-    urlcolor = {Red},
-    pdfstartview = {Fit},
-    pdfpagemode = {None},
-    pdfview = {XYZ null null null}
-  }
-\else
   \hypersetup{%
     hyperindex = {true},
     colorlinks = {true},
@@ -405,16 +310,6 @@
     pdfpagemode = {UseOutlines},
     pdfview = {XYZ null null null}
   }
-\fi
-\if@nodp
-  \AtBeginDocument{
-    \hypersetup{%
-      pdfauthor = {\@Hyperauthor},
-      pdftitle = {\@Plaintitle},
-      pdfkeywords = {\@Plainkeywords}
-    }
-  }
-\else
   \AtBeginDocument{
     \hypersetup{%
       pdfauthor = {\@Hyperauthor},
@@ -423,12 +318,9 @@
       pdfkeywords = {\@Plainkeywords}
     }
   }
-\fi
-\if@notitle
-  %% \AtBeginDocument{\maketitle}
-\else
-  \AtBeginDocument{\maketitle}
-\fi
+
+%\AtBeginDocument{\maketitle}
+
 %% commands
 \newcommand\code{\bgroup\@makeother\_\@makeother\~\@makeother\$\@codex}
 \def\@codex#1{{\normalfont\ttfamily\hyphenchar\font=-1 #1}\egroup}

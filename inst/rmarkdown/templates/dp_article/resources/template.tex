@@ -13,6 +13,18 @@
 \usepackage{tocloft}
 \usepackage{sectsty}
 
+% This will work with natbib and biblatex
+$if(natbib)$
+\usepackage[round]{natbib}
+\bibliographystyle{$if(biblio-style)$$biblio-style$$else$plainnat$endif$}
+$endif$
+$if(biblatex)$
+\usepackage{biblatex}
+$if(biblio-files)$
+\bibliography{$biblio-files$}
+$endif$
+$endif$
+
 %% Sweave(-like)
 %% These commands were taken from the rticles package
 \DefineVerbatimEnvironment{Sinput}{Verbatim}{fontshape=sl}
@@ -109,7 +121,7 @@ This is another in an occasional series of publications from the Consumer Financ
 $body$
 
 $if(natbib)$
-$if(bibliography)$
+$if(biblio-files)$
 $if(biblio-title)$
 $if(book-class)$
 \renewcommand\bibname{$biblio-title$}
@@ -117,7 +129,10 @@ $else$
 \renewcommand\refname{$biblio-title$}
 $endif$
 $endif$
-\bibliography{$for(bibliography)$$bibliography$$sep$,$endfor$}
+\newpage
+\vspace*{1.5in}
+{\fontfamily{phv} \fontsize{32}{32} \selectfont References}
+\bibliography{$biblio-files$}
 $endif$
 $endif$
 
