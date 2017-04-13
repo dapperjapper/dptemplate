@@ -80,7 +80,8 @@ $preamble$
 % Author Page
 \fancyfoot[R]{}
 \fancyfoot[L]{\fontfamily{phv} \fontsize{8}{8} \selectfont \thepage\hspace{20pt}CFPB DATA POINT: \uppercase{$title$}}
-\begin{itemize}[label=\FilledSmallSquare]
+\begin{itemize}     % [label=\FilledSmallSquare]
+ \renewcommand{\labelitemi}{\scriptsize\FilledSmallSquare}
   $for(author)$
     \item $author.name$
   $endfor$
