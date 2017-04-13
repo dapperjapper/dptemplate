@@ -7,6 +7,7 @@
 \usepackage{fancyhdr}
 \usepackage[letterpaper,left=1in,right=1in,top=1in,bottom=1.25in,footskip=.6in]{geometry}
 \usepackage{enumitem}
+\usepackage{amssymb}
 \usepackage[geometry]{ifsym}
 \usepackage{tocbibind}
 \usepackage{tocloft}
@@ -50,74 +51,35 @@
 \let\stdsection\section
 \renewcommand\section{\newpage\vspace*{1.5in}\stdsection}
 
-\ThisULCornerWallPaper{1}{dataPointCoverBackground}
-\ThisCenterWallPaper{0.35}{cfpblogo_wide}
-
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
-% \author{
-% $for(author)$$author.name$\\$author.affiliation$$sep$ \And $endfor$
-% }
-\title{$title.formatted$}
-
-% \Plainauthor{$for(author)$$author.name$$sep$, $endfor$}
-% $if(title.plain)$
-% \Plaintitle{$title.plain$}
-% $endif$
-% $if(title.short)$
-% \Shorttitle{$title.short$}
-% $endif$
-%
-% \Abstract{
-% $abstract$
-% }
-%
-% $if(keywords.formatted)$
-% \Keywords{$for(keywords.formatted)$$keywords.formatted$$sep$, $endfor$}
-% $endif$
-% $if(keywords.plain)$
-% \Plainkeywords{$for(keywords.plain)$$keywords.plain$$sep$, $endfor$}
-% $endif$
-
-%% publication information
-%% \Volume{50}
-%% \Issue{9}
-%% \Month{June}
-%% \Year{2012}
-%% \Submitdate{$submitdate$}
-%% \Acceptdate{2012-06-04}
-
-% \Address{
-% $for(author)$
-%   $if(author.address)$
-%   $author.name$\\
-%   $author.affiliation$\\
-%   $author.address$\\
-%   $if(author.email)$E-mail: $author.email$\\$endif$
-%   $if(author.url)$URL: $author.url$\\~\\$endif$
-%   $endif$
-% $endfor$
-% }
-
-%$preamble$
+$preamble$
 
 \fancyhf{}
-%\fancyfoot[L]{\fontfamily{phv} \fontsize{8}{8} \selectfont \thepage\hspace{20pt}CFPB Data Point:}
 \renewcommand{\headrulewidth}{0pt}
 \pagestyle{fancy}
+
+% This is beta on the TOC
+\renewcommand{\cfttoctitlefont}{\fontfamily{phv} \fontsize{32}{32} \selectfont}
 
 \begin{document}
 
 % Cover Page
-\fancyfoot[R]{\fontfamily{phv} \fontsize{10}{10} \selectfont $date$}
-\newgeometry{top=2.5in}
-\maketitle
-\restoregeometry
+\begin{titlepage}
+  \thispagestyle{fancy}
+  \ThisULCornerWallPaper{1}{dataPointCoverBackground}
+  \ThisCenterWallPaper{0.35}{cfpblogo_wide}
+  \fancyfoot[R]{\fontfamily{phv} \fontsize{10}{10} \selectfont $date$}
+  \vspace*{1.5in}
+  {\color{white} \fontfamily{phv} \fontsize{38}{38} \selectfont CFPB Data Point:\\[25pt]
+  $title$\\[40pt]
+  \fontsize{14}{14} \selectfont The CFPB Office of Research\par}
+\end{titlepage}
 
 % Author Page
 \fancyfoot[R]{}
-\fancyfoot[L]{\fontfamily{phv} \fontsize{8}{8} \selectfont \thepage\hspace{20pt}CFPB DATA POINT: \uppercase{$title.formatted$}}
+\fancyfoot[L]{\fontfamily{phv} \fontsize{8}{8} \selectfont \thepage\hspace{20pt}CFPB DATA POINT: \uppercase{$title$}}
 \begin{itemize}[label=\FilledSmallSquare]
   $for(author)$
     \item $author.name$
@@ -127,14 +89,18 @@
 This is another in an occasional series of publications from the Consumer Financial Protection Bureau's Office of Research. These publications are intended to further the Bureau's objective of providing an evidence-based perspective on consumer financial markets, consumer behavior, and regulations to inform the public discourse.
 \newpage
 
-\clearpage
-{
-  \pagestyle{empty}
-  \fancyfoot[L]{\fontfamily{phv} \fontsize{8}{8} \selectfont \thepage\hspace{20pt}CFPB DATA POINT: \uppercase{$title.formatted$}}
 \vspace*{1.5in}
 \tableofcontents
-\thispagestyle{empty}
-}
+\thispagestyle{fancy}
+% \clearpage
+% {
+%   \pagestyle{empty}
+%   \fancyfoot[L]{\fontfamily{phv} \fontsize{8}{8} \selectfont \thepage\hspace{20pt}CFPB DATA POINT: \uppercase{$title$}}
+% \vspace*{1.5in}
+% \tableofcontents
+% \thispagestyle{empty}
+% }
+
 \newpage
 
 
