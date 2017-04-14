@@ -15,7 +15,10 @@ datapoint <- function(...) {
   tex_file <- system.file('rmarkdown/templates/dp_article/resources/template.tex',
                           package = 'dptemplate')
 
-  ret_val <- rmarkdown::pdf_document(..., toc = TRUE, template = tex_file)
+  ret_val <- bookdown::pdf_document2(..., toc = TRUE, template = tex_file)
   ret_val$inherits <- 'pdf_document'
+
+  ret_val$knitr$opts_chunk$highlight <- FALSE
+
   ret_val
 }
