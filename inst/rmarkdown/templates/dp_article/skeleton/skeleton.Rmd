@@ -3,10 +3,10 @@ author:
   - name: First Author
   - name: Second Author
 title: "Needs a Title"
-preamble: >
-  \usepackage{amsmath}
 date: "`r format(Sys.Date(), '%B %Y')`"
-output: dptemplate::dp_article
+bibliography:  "/Users/ken/Documents/CreditInvisibles/missing.bib"
+citation_package:  natbib
+output: dptemplate::datapoint
 ---
 
 # Introduction
