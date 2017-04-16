@@ -1,6 +1,8 @@
 \documentclass[12pt,letterpaper,twoside]{article}
-\RequirePackage{graphicx,color,ae,fancyvrb}
+\usepackage[utf8]{inputenc}
+\RequirePackage{graphicx,color,ae,fancyvrb, hyperref}
 \RequirePackage[T1]{fontenc}
+\usepackage{framed}
 \usepackage[utf8]{inputenc}
 \usepackage{wallpaper}
 \usepackage[none]{hyphenat}
@@ -13,17 +15,42 @@
 \usepackage{tocloft}
 \usepackage{sectsty}
 
-% This will work with natbib and biblatex
-$if(natbib)$
-\usepackage[round]{natbib}
-\bibliographystyle{$if(biblio-style)$$biblio-style$$else$plainnat$endif$}
+% I will use biblatex for the bibliography
+\usepackage[
+backend=bibtex,
+style=authoryear,
+bibencoding=ascii,
+minnames=1,
+maxnames=4,
+dashed=false,
+firstinits=false,
+sorting=nyt
+]{biblatex}
+
+$if(bibliography)$
+\addbibresource{$bibliography$}
 $endif$
-$if(biblatex)$
-\usepackage{biblatex}
-$if(biblio-files)$
-\bibliography{$biblio-files$}
-$endif$
-$endif$
+
+% This block comes from Rob Hyndman's blog
+\DeclareFieldFormat{url}{\url{#1}}
+\DeclareFieldFormat[article]{pages}{#1}
+\DeclareFieldFormat[inproceedings]{pages}{\lowercase{pp.}#1}
+\DeclareFieldFormat[incollection]{pages}{\lowercase{pp.}#1}
+\DeclareFieldFormat[article]{volume}{\mkbibbold{#1}}
+\DeclareFieldFormat[article]{number}{\mkbibparens{#1}}
+\DeclareFieldFormat[article]{title}{\MakeCapital{#1}}
+\DeclareFieldFormat[article]{url}{}
+\DeclareFieldFormat[book]{url}{}
+\DeclareFieldFormat[inbook]{url}{}
+\DeclareFieldFormat[incollection]{url}{}
+\DeclareFieldFormat[inproceedings]{url}{}
+\DeclareFieldFormat[inproceedings]{title}{#1}
+\DeclareFieldFormat{shorthandwidth}{#1}
+\renewbibmacro{in:}{%   Removes In: for an article
+  \ifentrytype{article}{}{%
+  \printtext{\bibstring{in}\intitlepunct}}}
+\AtEveryBibitem{\clearfield{month}}
+\AtEveryCitekey{\clearfield{month}}
 
 %% Sweave(-like)
 %% These commands were taken from the rticles package
@@ -53,6 +80,7 @@ $endif$
 
 \renewcommand{\contentsname}{Table of contents}
 \renewcommand\cftsecleader{\cftdotfill{\cftdotsep}}
+\renewcommand{\cftsecaftersnum}{.}%
 
 \sectionfont{\mdseries\fontfamily{phv} \fontsize{32}{32} \selectfont}
 \makeatletter
@@ -74,6 +102,9 @@ $preamble$
 
 % This is beta on the TOC
 \renewcommand{\cfttoctitlefont}{\fontfamily{phv} \fontsize{32}{32} \selectfont}
+
+% This changes the spacing of text lines
+\renewcommand{\baselinestretch}{1.4}
 
 \begin{document}
 
@@ -120,24 +151,33 @@ This is another in an occasional series of publications from the Consumer Financ
 % Body of the report
 $body$
 
-$if(natbib)$
-$if(biblio-files)$
-$if(biblio-title)$
-$if(book-class)$
-\renewcommand\bibname{$biblio-title$}
-$else$
-\renewcommand\refname{$biblio-title$}
-$endif$
-$endif$
+$if(bibliography)$
 \newpage
-\vspace*{1.5in}
-{\fontfamily{phv} \fontsize{32}{32} \selectfont References}
-\bibliography{$biblio-files$}
-$endif$
+\printbibliography[heading=bibintoc,title={References}]
 $endif$
 
-$if(biblatex)$
-\printbibliography$if(biblio-title)$[title=$biblio-title$]$endif$
-$endif$
+%$if(natbib)$
+%$if(biblio-files)$
+%$if(biblio-title)$
+%$if(book-class)$
+%\renewcommand\bibname{$biblio-title$}
+%$else$
+%\renewcommand\refname{$biblio-title$}
+%$endif$
+%$endif$
+%\newpage
+%\vspace*{1.5in}
+%{\fontfamily{phv} \fontsize{32}{32} \selectfont References}
+%\bibliography{$biblio-files$}
+%$endif$
+%$endif$
+
+%$if(biblatex)$
+%\newpage
+%\vspace*{1.5in}
+%{\fontfamily{phv} \fontsize{32}{32} \selectfont References}
+%\printbibliography
+%$if(biblio-title)$[title=$biblio-title$]$endif$
+%$endif$
 
 \end{document}

@@ -5,8 +5,9 @@ author:
 title: "Needs a Title"
 date: "`r format(Sys.Date(), '%B %Y')`"
 bibliography:  "/Users/ken/Documents/CreditInvisibles/missing.bib"
-citation_package:  natbib
-output: dptemplate::datapoint
+output: 
+  dptemplate::datapoint:
+    citation_package: biblatex
 ---
 
 # Introduction
