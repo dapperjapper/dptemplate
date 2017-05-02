@@ -1,0 +1,4 @@
+name: Data Point as DOCX
+description: >
+  Template for creating a Data Point in a docx format.
+create_dir: true

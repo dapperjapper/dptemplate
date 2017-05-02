@@ -1,0 +1,4 @@
+name: Data Point
+description: >
+  Template for creating a Data Point using LaTeX.
+create_dir: true
