@@ -8,6 +8,9 @@ Description: This package contains the necessary templates to generate CFPB Offi
     of Research *Data Points*. The final file will be rendered as a PDF that should be
     suitable for publication.
 License: What license is it under?
+Imports:
+  xml2,
+  magrittr
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1
