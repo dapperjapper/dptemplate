@@ -4,7 +4,7 @@
 create_title_page <- function(yaml_front_matter, knit_input) {
 
   # Create a local copy of the title template file
-  title_file <- system.file('rmarkdown/templates/datapoint_word/resources/template_title3.docx',
+  title_file <- system.file('rmarkdown/templates/datapoint_word/resources/template_title5.docx',
                             package = 'dptemplate')
   if (title_file == '') stop('Could not find template_title.docx file')
 
@@ -37,7 +37,7 @@ create_title_page <- function(yaml_front_matter, knit_input) {
 }
 
 create_template_file <- function(yaml_front_matter) {
-  template_file <- system.file('rmarkdown/templates/datapoint_word/resources/template.docx',
+  template_file <- system.file('rmarkdown/templates/datapoint_word/resources/template2.docx',
                                package = 'dptemplate')
   if (template_file == '') stop('Could not file template.docx file')
 
@@ -49,12 +49,13 @@ create_template_file <- function(yaml_front_matter) {
                     overwrite = TRUE)
   if (!test) stop('Template could not be copied.')
 
-  rocx:::extract_from_docx(sprintf('%s.docx', in_file), keep_old = FALSE)
-  var_list <- extract_from_yaml(yaml_front_matter)
-  replace_title_and_date('footer2.xml', var_list, in_file)
+  #rocx:::extract_from_docx(sprintf('%s.docx', in_file), keep_old = FALSE)
+  #var_list <- extract_from_yaml(yaml_front_matter)
+  #replace_title_and_date('footer2.xml', var_list, in_file)
 
   # Recreate the docx file
-  rocx:::compress_to_docx(sprintf('%s.docx', in_file))
+  #rocx:::compress_to_docx(sprintf('%s.docx', in_file))
+  invisible(NULL)
 }
 
 replace_authors <- function(name_list, in_file) {
@@ -89,12 +90,12 @@ replace_title_and_date <- function(file_name, var_list, in_file) {
   i <- 1
   while(i <= n) {
     old_text <- xml_text(my_text[i])
-    if ('title' %in% names(var_list)) {
-      if (grepl('\\$title\\$', old_text, ignore.case = TRUE)) {
-        new_text <- gsub('\\$title\\$', var_list$title, old_text, ignore.case = TRUE)
-        rocx:::replace_text(my_text[i], new_text)
-      }
-    }
+    #if ('title' %in% names(var_list)) {
+    #  if (grepl('\\$title\\$', old_text, ignore.case = TRUE)) {
+    #    new_text <- gsub('\\$title\\$', var_list$title, old_text, ignore.case = TRUE)
+    #    rocx:::replace_text(my_text[i], new_text)
+    #  }
+    #}
     if ('date' %in% names(var_list)) {
       if (grepl('\\$date\\$', old_text, ignore.case = TRUE))
         rocx:::replace_text(my_text[i], var_list$date)
