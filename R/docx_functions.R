@@ -22,6 +22,7 @@ create_title_page <- function(yaml_front_matter, knit_input) {
 
   replace_title_and_date('document.xml', var_list, paste0('title_', in_file))
   replace_title_and_date('footer2.xml', var_list, paste0('title_', in_file))
+  update_properties(paste0('title_', in_file), yaml_front_matter$dp_title)
 
   if ('dp_author' %in% names(yaml_front_matter)) {
     author_list <- yaml_front_matter$dp_author
@@ -137,4 +138,14 @@ extract_from_yaml <- function(yaml_front_matter) {
     var_list$date <- temp_date
   }
   var_list
+}
+
+update_properties <- function(in_file, title) {
+  xml_path <- sprintf('rocx_temp_%s_docx/docProps/core.xml', in_file)
+  template <- read_xml(xml_path)
+
+  my_nodes <- xml_find_all(template, '//dc:title')
+  xml_text(my_nodes) <- title
+
+  write_xml(template, xml_path)
 }
