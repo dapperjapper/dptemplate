@@ -31,7 +31,7 @@ create_title_page <- function(yaml_front_matter, knit_input) {
   }
   replace_authors(author_list, paste0('title_', in_file))
 
-  change_target(paste0('title_', in_file))
+  change_target(in_file)
 
   # Recreate the docx file
   rocx:::compress_to_docx(sprintf('title_%s.docx', in_file))
@@ -108,12 +108,12 @@ replace_title_and_date <- function(file_name, var_list, in_file) {
 
 #' @importFrom magrittr "%>%"
 change_target <- function(in_file) {
-  xml_path <- sprintf('rocx_temp_%s_docx/word/_rels/document.xml.rels',
+  xml_path <- sprintf('rocx_temp_title_%s_docx/word/_rels/document.xml.rels',
                       in_file)
   template <- read_xml(xml_path)
   my_xml <- xml_children(template)
-  new_file <- sprintf('%s/Untitled.docx', getwd()) %>%
-    gsub('/', ':', .)
+  new_file <- sprintf('%s.docx', in_file) #getwd()) %>%
+    # gsub('/', ':', .)
 
   for (i in 1:length(my_xml)) {
     if (grepl('subDocument', xml_attr(my_xml[i], attr = 'Type'))) {
