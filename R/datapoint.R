@@ -15,6 +15,22 @@ datapoint <- function(...) {
   tex_file <- system.file('rmarkdown/templates/datapoint/resources/template.tex',
                           package = 'dptemplate')
 
+  # Copy the necessary graphics files
+  graph_list <- c('cfpblogo_wide.png', 'dataPointCoverBackground.png')
+  package_dir <- system.file(package = 'dptemplate')
+  for(this_graph in graph_list) {
+    if (!file.exists(this_graph)) {
+      old_path <- sprintf('%s/rmarkdown/templates/datapoint/skeleton/%s',
+                          package_dir,
+                          this_graph)
+      if (file.exists(old_path)) {
+        file.copy(from = old_path, to = this_graph, overwrite = FALSE)
+      } else {
+        stop(paste0('Unable to find file:  %s', old_path))
+      }
+    }
+  }
+
   ret_val <- bookdown::pdf_book(...,
                                 toc = TRUE,
                                 #number_sections = TRUE,
