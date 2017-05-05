@@ -70,7 +70,7 @@ $endif$
 
 \def\maketitle{
   {\color{white} \fontfamily{phv} \fontsize{38}{38} \selectfont CFPB Data Point:\\[25pt]
-  $title$}\\[40pt]
+  $dp_title$}\\[40pt]
   {\noindent \color{white} \fontfamily{phv} \fontsize{14}{14} \selectfont The CFPB Office of Research\par}
   \newpage
   }
@@ -113,20 +113,20 @@ $preamble$
   \thispagestyle{fancy}
   \ThisULCornerWallPaper{1}{dataPointCoverBackground}
   \ThisCenterWallPaper{0.35}{cfpblogo_wide}
-  \fancyfoot[R]{\fontfamily{phv} \fontsize{10}{10} \selectfont $date$}
+  \fancyfoot[R]{\fontfamily{phv} \fontsize{10}{10} \selectfont $dp_date$}
   \vspace*{1.5in}
   {\color{white} \fontfamily{phv} \fontsize{38}{38} \selectfont CFPB Data Point:\\[25pt]
-  $title$\\[40pt]
+  $dp_title$\\[40pt]
   \fontsize{14}{14} \selectfont The CFPB Office of Research\par}
 \end{titlepage}
 
 % Author Page
 \fancyfoot[R]{}
-\fancyfoot[L]{\fontfamily{phv} \fontsize{8}{8} \selectfont \thepage\hspace{20pt}CFPB DATA POINT: \uppercase{$title$}}
+\fancyfoot[L]{\fontfamily{phv} \fontsize{8}{8} \selectfont \thepage\hspace{20pt}CFPB DATA POINT: \uppercase{$dp_title$}}
 \begin{itemize}     % [label=\FilledSmallSquare]
  \renewcommand{\labelitemi}{\scriptsize\FilledSmallSquare}
-  $for(author)$
-    \item $author.name$
+  $for(dp_author)$
+    \item $dp_author$
   $endfor$
 \end{itemize}
 
@@ -139,7 +139,7 @@ This is another in an occasional series of publications from the Consumer Financ
 % \clearpage
 % {
 %   \pagestyle{empty}
-%   \fancyfoot[L]{\fontfamily{phv} \fontsize{8}{8} \selectfont \thepage\hspace{20pt}CFPB DATA POINT: \uppercase{$title$}}
+%   \fancyfoot[L]{\fontfamily{phv} \fontsize{8}{8} \selectfont \thepage\hspace{20pt}CFPB DATA POINT: \uppercase{$dp_title$}}
 % \vspace*{1.5in}
 % \tableofcontents
 % \thispagestyle{empty}
