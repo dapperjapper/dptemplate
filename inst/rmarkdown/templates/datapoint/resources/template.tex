@@ -66,7 +66,8 @@ $endif$
 \setkeys{Gin}{width=0.8\textwidth}
 
 %% paragraphs
-\setlength{\parskip}{0.7ex plus0.1ex minus0.1ex}
+%%\setlength{\parskip}{0.7ex plus0.1ex minus0.1ex}
+\setlength{\parskip}{12pt}
 \setlength{\parindent}{0em}
 
 \def\maketitle{
@@ -105,9 +106,51 @@ $preamble$
 \renewcommand{\cfttoctitlefont}{\fontfamily{phv} \fontsize{32}{32} \selectfont}
 
 % This changes the spacing of text lines
-\renewcommand{\baselinestretch}{1.4}
+%\renewcommand{\baselinestretch}{1.4}
+\usepackage{setspace}
+\onehalfspacing
+
+% Adjust the placement and format of captions
+\usepackage{textcase}
+\usepackage[figureposition=top,figurename=FIGURE,
+            tableposition=top,tablename=TABLE]{caption}
+\DeclareCaptionTextFormat{up}{\MakeTextUppercase{#1}}
+\DeclareCaptionFont{ninept}{\fontsize{9pt}{11pt}\selectfont #1}
+\captionsetup[figure]{
+  font=ninept,
+  format=hang,
+  labelsep=colon,
+  justification=raggedright,
+  singlelinecheck=false,
+  textformat=up,
+  labelfont=bf,
+  textfont=up}
+\captionsetup[table]{
+  font=ninept,
+  format=hang,
+  labelsep=colon,
+  justification=raggedright,
+  singlelinecheck=false,
+  textformat=up,
+  labelfont=bf,
+  textfont=up}
+
+\usepackage{floatrow}
+\floatsetup[figure]{capposition=top}
+\floatsetup[table]{capposition=top}
+
+% This adjusts the footnotes
+\usepackage[hang,flushmargin]{footmisc}
+\setlength{\footnotesep}{2em}
+
+% This adds row coloring to the tables
+\usepackage[table]{xcolor}
+\definecolor{greenhead}{cmyk}{0.70, 0, 0.89, 0.01}
+\definecolor{green1}{cmyk}{0.20, 0, 0.28, 0}
+\definecolor{green2}{cmyk}{0.30, 0.01, 0.48, 0}
 
 \begin{document}
+\rowcolors{2}{green2}{green1}
 
 % Cover Page
 \begin{titlepage}
@@ -122,6 +165,7 @@ $preamble$
 \end{titlepage}
 
 % Author Page
+\raggedright
 \fancyfoot[R]{}
 \fancyfoot[L]{\fontfamily{phv} \fontsize{8}{8} \selectfont \thepage\hspace{20pt}CFPB DATA POINT: \uppercase{$dp_title$}}
 \begin{itemize}     % [label=\FilledSmallSquare]
