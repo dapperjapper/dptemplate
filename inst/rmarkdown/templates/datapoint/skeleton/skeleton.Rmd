@@ -1,10 +1,10 @@
 ---
-author:
-  - name: First Author
-  - name: Second Author
-title: "Needs a Title"
-date: "`r format(Sys.Date(), '%B %Y')`"
-bibliography:  "/Users/ken/Documents/CreditInvisibles/missing.bib"
+dp_author:
+  - "Add Name"
+dp_title: "Needs a Title"
+dp_date: "`r format(Sys.Date(), '%B %Y')`"
+draft: TRUE
+bibliography:  ""
 output: 
   dptemplate::datapoint:
     citation_package: biblatex
