@@ -33,6 +33,11 @@ create_title_page <- function(yaml_front_matter, knit_input) {
 
   change_target(in_file)
 
+  if ('draft' %in% names(yaml_front_matter)) {
+    if (yaml_front_matter$draft)
+      remove_draft(paste0('title_', in_file))
+  }
+
   # Recreate the docx file
   rocx:::compress_to_docx(sprintf('title_%s.docx', in_file))
 }
@@ -148,4 +153,47 @@ update_properties <- function(in_file, title) {
   xml_text(my_nodes) <- title
 
   write_xml(template, xml_path)
+}
+
+#' Remove Draft
+#'
+#' This function will check the header files to determine if the text in the
+#' header files indicate that this is a draft.  If found, the draft text
+#' will be removed.
+#' @import xml2
+remove_draft <- function(file_name) {
+  # There may be two header files in the xml
+  for (n in c(1:3)) {
+    header_file <- sprintf('rocx_temp_%s_docx/word/header%i.xml',
+                           file_name,
+                           n)
+    if (file.exists(header_file)) {
+      resave <- FALSE
+      in_file <- read_xml(header_file)
+
+      ## Remove all text mentions of draft
+      #nodes <- xml_find_all(in_file, '//w:p')
+      #for (i in seq_along(nodes)) {
+      #  if (xml_text(nodes[i]) == 'DRAFT') {
+      #    replace_text(nodes[i], '')
+      #    resave <- TRUE
+      #  }
+      #}
+
+      # Check for the existence of a watermark
+      nodes <- xml_find_all(in_file, '//v:textpath')
+      for (i in seq_along(nodes)) {
+        if (xml_has_attr(nodes[i], 'string')) {
+          if (xml_attr(nodes[i], 'string') == 'DRAFT') {
+            xml_attr(nodes[i], 'string') <- ''
+            resave <- TRUE
+          }
+        }
+      }
+
+      if (resave)
+        write_xml(in_file, header_file)
+    }
+  }
+  invisible(NULL)
 }
