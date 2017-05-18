@@ -2,5 +2,6 @@
 
 export(datapoint)
 export(datapoint_word)
+export(dp_kable)
 import(xml2)
 importFrom(magrittr,"%>%")
