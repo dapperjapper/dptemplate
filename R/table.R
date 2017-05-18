@@ -14,6 +14,7 @@ dp_kable <- function(x,
                      escape = TRUE,
                      booktabs = TRUE,
                      latex_options,
+                     linesep = "",
                      ...) {
 
   kable_val <- knitr::kable(x = x,
@@ -25,6 +26,7 @@ dp_kable <- function(x,
                             format.args = format.args,
                             escape = escape,
                             booktabs = booktabs,
+                            linesep = linesep,
                             ...)
 
   if (!missing(latex_options))
