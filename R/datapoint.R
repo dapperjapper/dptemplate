@@ -33,6 +33,7 @@ datapoint <- function(...) {
 
   ret_val <- bookdown::pdf_book(...,
                                 toc = TRUE,
+                                citation_package = 'biblatex',
                                 #number_sections = TRUE,
                                 template = tex_file)
   ret_val$inherits <- 'pdf_book'
