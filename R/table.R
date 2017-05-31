@@ -29,10 +29,10 @@ dp_kable <- function(x,
                             linesep = linesep,
                             ...)
 
-  if (!missing(latex_options))
-    kable_val <- kable_styling(kable_val, latex_options = latex_options)
-
   if (attr(kable_val, 'format') == 'latex') {
+    if (!missing(latex_options))
+      kable_val <- kable_styling(kable_val, latex_options = latex_options)
+
     my_text <- kable_val %>%
       gsub('\\\\hline', '\\\\arrayrulecolor{white}\\\\hline', .) %>%
       gsub('\\\\toprule', '', .) %>%
