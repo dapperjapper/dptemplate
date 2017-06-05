@@ -15,7 +15,14 @@ dp_kable <- function(x,
                      booktabs = TRUE,
                      latex_options,
                      linesep = "",
+                     col.names = NA,
                      ...) {
+
+  if (is.na(col.names)) {
+    col_names <- names(x)
+  } else {
+    col_names <- col.names
+  }
 
   kable_val <- knitr::kable(x = x,
                             format = format,
@@ -27,6 +34,7 @@ dp_kable <- function(x,
                             escape = escape,
                             booktabs = booktabs,
                             linesep = linesep,
+                            col.names = col_names,
                             ...)
 
   if (attr(kable_val, 'format') == 'latex') {
@@ -40,6 +48,11 @@ dp_kable <- function(x,
       gsub('\\\\bottomrule', '', .) %>%
       strsplit('\n') %>%
       unlist()
+
+    col_line <- paste(col_names, collapse = ' & ')
+    new_line <- sprintf('\\\\textbf{%s}', col_names) %>%
+      paste(collapse = ' & ')
+    my_text <- gsub(col_line, new_line, my_text)
 
     my_pos <- my_text %>%
       grepl('\\\\begin\\{tabular\\}', .) %>%
