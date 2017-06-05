@@ -16,7 +16,10 @@ datapoint <- function(...) {
                           package = 'dptemplate')
 
   # Copy the necessary graphics files
-  graph_list <- c('cfpblogo_wide.png', 'dataPointCoverBackground.png')
+  graph_list <- c('cfpblogo_wide.png',
+                  'dataPointCoverBackground.png',
+                  'cfpb_logo.png',
+                  'cfpb_report_bottom.png')
   package_dir <- system.file(package = 'dptemplate')
   for(this_graph in graph_list) {
     if (!file.exists(this_graph)) {
@@ -35,7 +38,8 @@ datapoint <- function(...) {
                                 toc = TRUE,
                                 citation_package = 'biblatex',
                                 #number_sections = TRUE,
-                                template = tex_file)
+                                template = tex_file,
+                                latex_engine = 'pdflatex')
   ret_val$inherits <- 'pdf_book'
 
   ret_val$knitr$opts_chunk$highlight <- FALSE
