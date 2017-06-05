@@ -7,7 +7,7 @@
 \usepackage{wallpaper}
 \usepackage[none]{hyphenat}
 \usepackage{fancyhdr}
-\usepackage[letterpaper,left=1in,right=1in,top=1in,bottom=1.25in,footskip=.6in]{geometry}
+\usepackage[letterpaper,left=1in,right=1in,top=1.2in,bottom=1.25in,footskip=.6in]{geometry}
 \usepackage{enumitem}
 \usepackage{amssymb}
 \usepackage[geometry]{ifsym}
@@ -15,6 +15,15 @@
 \usepackage{tocloft}
 \usepackage{sectsty}
 \usepackage{booktabs}
+\usepackage[all]{nowidow}
+\usepackage{tgschola}
+
+%\usepackage{fontspec}
+%\usepackage{etex}
+
+\renewcommand{\arraystretch}{1.5}
+
+%\setlist{noitemsep}
 
 $if(draft)$
 \usepackage{draftwatermark}
@@ -74,26 +83,44 @@ $endif$
 \setlength{\parskip}{12pt}
 \setlength{\parindent}{0em}
 
-\def\maketitle{
-  {\color{white} \fontfamily{phv} \fontsize{38}{38} \selectfont CFPB Data Point:\\[25pt]
-  $dp_title$}\\[40pt]
-  {\noindent \color{white} \fontfamily{phv} \fontsize{14}{14} \selectfont The CFPB Office of Research\par}
-  \newpage
-  }
+% I don't think I need this anymore
+%\def\maketitle{
+%  {\color{white} \fontfamily{phv} \fontsize{38}{38} \selectfont CFPB Data Point:\\[25pt]
+%  $dp_title$}\\[40pt]
+%  {\noindent \color{white} \fontfamily{phv} \fontsize{14}{14} \selectfont The CFPB Office of %Research\par}
+%  \newpage
+%  }
 
-\addtolength{\wpXoffset}{-2in}
-\addtolength{\wpYoffset}{-4.7in}
+% This controls where the CFPB logo appears on the cover sheet
+% Positions are relative to the page center
+\addtolength{\wpXoffset}{-2.3in}
+\addtolength{\wpYoffset}{-3.8in}
 
-\renewcommand{\contentsname}{Table of contents}
-\renewcommand\cftsecleader{\cftdotfill{\cftdotsep}}
+\renewcommand{\contentsname}{Table of Contents}
+\renewcommand{\cftsecfont}{\bfseries\fontfamily{phv} \fontsize{12}{12} \selectfont}
+\renewcommand{\cftsecleader}{\bfseries\cftdotfill{\cftdotsep}}
+\renewcommand{\cftsecpagefont}{\bfseries\fontfamily{phv} \fontsize{12}{12} \selectfont}
 \renewcommand{\cftsecaftersnum}{.}%
-\renewcommand{\cftsecpresnum}{\color{gray}}
-\renewcommand{\cftsubsecpresnum}{\color{gray}}
-\renewcommand{\cftsubsubsecpresnum}{\color{gray}}
+\renewcommand{\cftsecpresnum}{\bfseries\color{black}}
+\renewcommand{\cftsubsecpresnum}{\bfseries\color{black}}
+\renewcommand{\cftsubsubsecpresnum}{\bfseries\color{black}}
+\renewcommand{\cftsubsecafterpnum}{\hspace*{0.25in}}
 
 \sectionfont{\mdseries\fontfamily{phv} \fontsize{32}{32} \selectfont}
+\subsectionfont{\mdseries\fontfamily{phv} \fontsize{22}{22} \selectfont}
+\subsubsectionfont{\mdseries\fontfamily{phv} \fontsize{16}{16} \selectfont}
 \makeatletter
-\renewcommand{\@seccntformat}[1]{\csname the#1\endcsname.\quad}
+%\renewcommand{\@seccntformat}[1]{\csname the#1\endcsname.\quad}
+%\renewcommand{\@seccntformat}[1]{\csname the#1\endcsname.\hspace*{0.5em}}
+\DeclareRobustCommand{\@seccntformat}[1]{%
+  \def\temp@@a{#1}%
+  \def\temp@@b{section}%
+  \ifx\temp@@a\temp@@b
+  \csname the#1\endcsname.\hspace*{0.25em}%
+  \else
+  \csname the#1\endcsname\hspace*{0.25em}%
+  \fi
+}
 \makeatother
 
 % Start each section on a new page
@@ -123,10 +150,12 @@ $preamble$
             tableposition=top,tablename=TABLE]{caption}
 \DeclareCaptionTextFormat{up}{\MakeTextUppercase{#1}}
 \DeclareCaptionFont{ninept}{\fontsize{9pt}{11pt}\selectfont #1}
+%\DeclareCaptionLabelFormat{mylabel}{#1 #2.\hspace{5em}}
+\DeclareCaptionLabelSeparator{mysep}{:\hspace*{0.2in}}
 \captionsetup[figure]{
   font=ninept,
   format=hang,
-  labelsep=colon,
+  labelsep=mysep, % colon,
   justification=raggedright,
   singlelinecheck=false,
   textformat=up,
@@ -135,7 +164,7 @@ $preamble$
 \captionsetup[table]{
   font=ninept,
   format=hang,
-  labelsep=colon,
+  labelsep=mysep,  % colon,
   justification=raggedright,
   singlelinecheck=false,
   textformat=up,
@@ -148,31 +177,49 @@ $preamble$
 
 % This adjusts the footnotes
 \usepackage[hang,flushmargin]{footmisc}
-\setlength{\footnotesep}{2em}
+%\setlength{\footnotesep}{2em}
+\setlength{\footnotemargin}{0.1in}
 
 % This adds row coloring to the tables
 \usepackage[table]{xcolor}
-\definecolor{greenhead}{cmyk}{0.70, 0, 0.89, 0.01}
-\definecolor{green1}{cmyk}{0.20, 0, 0.28, 0}
-\definecolor{green2}{cmyk}{0.30, 0.01, 0.48, 0}
+% These are the green colors for the original table format
+%\definecolor{greenhead}{cmyk}{0.70, 0, 0.89, 0.01}
+%\definecolor{green1}{cmyk}{0.20, 0, 0.28, 0}
+%\definecolor{green2}{cmyk}{0.30, 0.01, 0.48, 0}
+\definecolor{greenhead}{cmyk}{0.26, 0.01, 0.40, 0}
+\definecolor{green1}{cmyk}{0.1, 0.02, 0.12, 0}
+\definecolor{green2}{cmyk}{0, 0, 0, 0}
+
 
 \begin{document}
 \rowcolors{2}{green2}{green1}
 
 % Cover Page
 \begin{titlepage}
+  % This is the old cover page (green cover)
+  %\thispagestyle{fancy}
+  %\ThisULCornerWallPaper{1}{dataPointCoverBackground}
+  %\ThisCenterWallPaper{0.35}{cfpblogo_wide}
+  %\fancyfoot[R]{\fontfamily{phv} \fontsize{10}{10} \selectfont $dp_date$}
+  %\vspace*{1.5in}
+  %{\color{white} \fontfamily{phv} \fontsize{38}{38} \selectfont CFPB Data Point:\\[25pt]
+  %$dp_title$\\[40pt]
+  %\fontsize{14}{14} \selectfont The CFPB Office of Research\par}
+
+  % This is the new cover page
   \thispagestyle{fancy}
-  \ThisULCornerWallPaper{1}{dataPointCoverBackground}
+  \fancyhead[L]{\fontfamily{phv} \fontsize{10}{10} \selectfont $dp_date$}
+  \ThisLLCornerWallPaper{1}{cfpb_report_bottom.png}
   \ThisCenterWallPaper{0.35}{cfpblogo_wide}
-  \fancyfoot[R]{\fontfamily{phv} \fontsize{10}{10} \selectfont $dp_date$}
   \vspace*{1.5in}
-  {\color{white} \fontfamily{phv} \fontsize{38}{38} \selectfont CFPB Data Point:\\[25pt]
+  {\color{black} \fontfamily{phv} \fontsize{38}{38} \selectfont CFPB Data Point:\\[25pt]
   $dp_title$\\[40pt]
   \fontsize{14}{14} \selectfont The CFPB Office of Research\par}
 \end{titlepage}
 
 % Author Page
 \raggedright
+\fancyhead[L]{}  % This keeps the date on the cover page from repeating on other pages
 \fancyfoot[R]{}
 \fancyfoot[L]{\fontfamily{phv} \fontsize{8}{8} \selectfont \thepage\hspace{20pt}CFPB DATA POINT: \uppercase{$dp_title$}}
 \begin{itemize}     % [label=\FilledSmallSquare]
@@ -181,7 +228,6 @@ $preamble$
     \item $dp_author$
   $endfor$
 \end{itemize}
-
 This is another in an occasional series of publications from the Consumer Financial Protection Bureau's Office of Research. These publications are intended to further the Bureau's objective of providing an evidence-based perspective on consumer financial markets, consumer behavior, and regulations to inform the public discourse.
 \newpage
 
