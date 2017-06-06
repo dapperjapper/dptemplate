@@ -46,18 +46,19 @@ $if(bibliography)$
 $endif$
 
 % This block comes from Rob Hyndman's blog
-\DeclareFieldFormat{url}{\url{#1}}
+\DeclareFieldFormat{url}{Available online at {\color{hyperblue} \url{#1}}}
 \DeclareFieldFormat[article]{pages}{#1}
 \DeclareFieldFormat[inproceedings]{pages}{\lowercase{pp.}#1}
 \DeclareFieldFormat[incollection]{pages}{\lowercase{pp.}#1}
-\DeclareFieldFormat[article]{volume}{\mkbibbold{#1}}
-\DeclareFieldFormat[article]{number}{\mkbibparens{#1}}
+%\DeclareFieldFormat[article]{volume}{\mkbibbold{#1}}
+%\DeclareFieldFormat[article]{number}{\mkbibparens{#1}}
 \DeclareFieldFormat[article]{title}{\MakeCapital{#1}}
 \DeclareFieldFormat[article]{url}{}
 \DeclareFieldFormat[book]{url}{}
 \DeclareFieldFormat[inbook]{url}{}
 \DeclareFieldFormat[incollection]{url}{}
 \DeclareFieldFormat[inproceedings]{url}{}
+\DeclareFieldFormat[techreport]{url}{}
 \DeclareFieldFormat[inproceedings]{title}{#1}
 \DeclareFieldFormat{shorthandwidth}{#1}
 \renewbibmacro{in:}{%   Removes In: for an article
@@ -189,6 +190,7 @@ $preamble$
 \definecolor{greenhead}{cmyk}{0.26, 0.01, 0.40, 0}
 \definecolor{green1}{cmyk}{0.1, 0.02, 0.12, 0}
 \definecolor{green2}{cmyk}{0, 0, 0, 0}
+\definecolor{hyperblue}{cmyk}{0.73, 0.35, 0, 0}
 
 
 \begin{document}
@@ -253,6 +255,8 @@ $if(bibliography)$
 \newpage
 \printbibliography[heading=bibintoc,title={References}]
 $endif$
+
+%\bibliography{$bibliography$}
 
 %$if(natbib)$
 %$if(biblio-files)$
