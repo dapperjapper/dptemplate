@@ -37,6 +37,7 @@ datapoint <- function(...) {
   ret_val <- bookdown::pdf_book(...,
                                 toc = TRUE,
                                 citation_package = 'biblatex',
+                                #citation_package = 'none',
                                 #number_sections = TRUE,
                                 template = tex_file,
                                 latex_engine = 'pdflatex')
