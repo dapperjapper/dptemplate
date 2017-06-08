@@ -7,7 +7,8 @@ cfpb_slides <- function(...) {
                           package = 'dptemplate')
 
   # Copy the necessary graphics files
-  graph_list <- c('report_bottom.png', 'cfpb_primary_logo_color_rgb.png')
+  graph_list <- c('report_bottom.png', 'cfpb_primary_logo_color_rgb.png',
+                  'cfpb_report_bottom.png')
   package_dir <- system.file(package = 'dptemplate')
   for(this_graph in graph_list) {
     if (!file.exists(this_graph)) {

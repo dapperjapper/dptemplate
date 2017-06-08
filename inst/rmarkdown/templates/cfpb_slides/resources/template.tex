@@ -237,7 +237,7 @@ $endif$
 
 \usepackage{graphicx}
 \usepackage{tikz}
-\pgfdeclareimage[width=\paperwidth]{bottomimage}{report_bottom.png}
+\pgfdeclareimage[width=\paperwidth]{bottomimage}{cfpb_report_bottom.png}
 \pgfdeclareimage[width=0.35\paperwidth]{cfpblogo}{cfpb_primary_logo_color_rgb.png}
 \setbeamertemplate{title page}{
   \begin{picture}(0, 0)
@@ -284,14 +284,14 @@ $if(title)$
 $endif$
 
 % This will add the CFPB logo to the side
-\restoregeometry
-\newgeometry{left=30pt, bottom=15pt, top=20pt}
-\setbeamertemplate{sidebar left}{
-\vfill
-\rlap{%\hskip0.1cm
- \includegraphics[scale=0.09]{cfpb_primary_logo_color_rgb.png} }
- \vskip25pt
-}
+%\restoregeometry
+%\newgeometry{left=30pt, bottom=15pt, top=20pt}
+%\setbeamertemplate{sidebar left}{
+%\vfill
+%\rlap{%\hskip0.1cm
+% \includegraphics[scale=0.09]{cfpb_primary_logo_color_rgb.png} }
+% \vskip25pt
+%}
 
 $for(include-before)$
 $include-before$

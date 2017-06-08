@@ -1,6 +1,7 @@
 ---
 title: "Untitled"
 author: "JOCA-15-0172R1"
+shortauthor: ""
 date: "5/19/2017"
 output: cfpb_slides
 ---
