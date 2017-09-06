@@ -1,7 +1,7 @@
 #' Beamer Format with CFPB Logo
 #'
 #' @export
-cfpb_slides <- function(...) {
+cfpb_slides <- function(fig_caption = FALSE, ...) {
   # Get the location of the template file
   tex_file <- system.file('rmarkdown/templates/cfpb_slides/resources/template.tex',
                           package = 'dptemplate')
@@ -24,6 +24,7 @@ cfpb_slides <- function(...) {
   }
 
   ret_val <- rmarkdown::beamer_presentation(...,
+                                            fig_caption = fig_caption,
                                             template = tex_file)
   ret_val$inherits <- 'beamer_presentation'
 

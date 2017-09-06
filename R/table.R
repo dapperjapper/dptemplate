@@ -18,7 +18,7 @@ dp_kable <- function(x,
                      col.names = NA,
                      ...) {
 
-  if (is.na(col.names)) {
+  if (all(is.na(col.names))) {
     col_names <- names(x)
   } else {
     col_names <- col.names
