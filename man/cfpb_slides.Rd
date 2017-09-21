@@ -4,7 +4,7 @@
 \alias{cfpb_slides}
 \title{Beamer Format with CFPB Logo}
 \usage{
-cfpb_slides(...)
+cfpb_slides(fig_caption = FALSE, ...)
 }
 \description{
 Beamer Format with CFPB Logo

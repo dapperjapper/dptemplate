@@ -6,7 +6,7 @@
 \usage{
 dp_kable(x, format = NULL, digits = getOption("digits"), row.names = NA,
   align = NULL, caption = NULL, format.args = list(), escape = TRUE,
-  booktabs = TRUE, latex_options, linesep = "", ...)
+  booktabs = TRUE, latex_options, linesep = "", col.names = NA, ...)
 }
 \description{
 This function overrides the knitr::kable function. For LaTeX documents,
