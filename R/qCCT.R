@@ -34,11 +34,16 @@ qCCT <- function(...) {
     }
   }
 
-  dots <- list(...)
-  cat(names(dots))
+  # browser()
+  # use_citation_package <- 'none'  # Default citation package
+  # dots <- list(...)
+  # if ('bibliography' %in% names(dots)) {
+  #   if (dots[['bibliography']] == '')
+  #     use_citation_package == 'none'
+  # }
 
   ret_val <- bookdown::pdf_book(...,
-                                toc = TRUE,
+                                toc = FALSE,
                                 citation_package = 'biblatex',
                                 #citation_package = 'none',
                                 #number_sections = TRUE,
