@@ -34,6 +34,9 @@ qCCT <- function(...) {
     }
   }
 
+  dots <- list(...)
+  cat(names(dots))
+
   ret_val <- bookdown::pdf_book(...,
                                 toc = TRUE,
                                 citation_package = 'biblatex',

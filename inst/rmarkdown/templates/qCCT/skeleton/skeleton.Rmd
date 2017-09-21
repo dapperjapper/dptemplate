@@ -5,9 +5,7 @@ dp_title: "Needs a Title"
 dp_date: "`r format(Sys.Date(), '%B %Y')`"
 draft: TRUE
 bibliography:  "bibliography.bib"
-output: 
-  dptemplate::qCCT:
-    citation_package: biblatex
+output: dptemplate::qCCT
 ---
 
 ```{r header, echo=FALSE}
