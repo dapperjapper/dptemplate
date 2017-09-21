@@ -1,0 +1,4 @@
+name: qCCT
+description: >
+  Template for creating a Quarterly Consumer Credit Trends report using LaTeX.
+create_dir: true

@@ -1,0 +1,286 @@
+\documentclass[12pt,letterpaper,twoside]{article}
+\usepackage[utf8]{inputenc}
+\RequirePackage{graphicx,color,ae,fancyvrb, hyperref}
+\RequirePackage[T1]{fontenc}
+\usepackage{framed}
+\usepackage[utf8]{inputenc}
+\usepackage{wallpaper}
+\usepackage[none]{hyphenat}
+\usepackage{fancyhdr}
+\usepackage[letterpaper,left=1in,right=1in,top=1.2in,bottom=1.25in,footskip=.6in]{geometry}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage[geometry]{ifsym}
+\usepackage{tocbibind}
+\usepackage{tocloft}
+\usepackage{sectsty}
+\usepackage{booktabs}
+\usepackage[all]{nowidow}
+\usepackage{tgschola}
+\usepackage{lscape}
+
+%\usepackage{fontspec}
+%\usepackage{etex}
+
+\renewcommand{\arraystretch}{1.5}
+
+%\setlist{noitemsep}
+
+$if(draft)$
+\usepackage{draftwatermark}
+$endif$
+
+% I will use biblatex for the bibliography
+\usepackage[
+backend=bibtex,
+style=authoryear,
+bibencoding=ascii,
+minnames=1,
+maxnames=4,
+dashed=false,
+firstinits=false,
+sorting=nyt
+]{biblatex}
+
+$if(bibliography)$
+\addbibresource{$bibliography$}
+$endif$
+
+% This block comes from Rob Hyndman's blog
+\DeclareFieldFormat{url}{Available online at {\color{hyperblue} \url{#1}}}
+\DeclareFieldFormat[article]{pages}{#1}
+\DeclareFieldFormat[inproceedings]{pages}{\lowercase{pp.}#1}
+\DeclareFieldFormat[incollection]{pages}{\lowercase{pp.}#1}
+%\DeclareFieldFormat[article]{volume}{\mkbibbold{#1}}
+%\DeclareFieldFormat[article]{number}{\mkbibparens{#1}}
+\DeclareFieldFormat[article]{title}{\MakeCapital{#1}}
+\DeclareFieldFormat[article]{url}{}
+\DeclareFieldFormat[book]{url}{}
+\DeclareFieldFormat[inbook]{url}{}
+\DeclareFieldFormat[incollection]{url}{}
+\DeclareFieldFormat[inproceedings]{url}{}
+\DeclareFieldFormat[techreport]{url}{}
+\DeclareFieldFormat[inproceedings]{title}{#1}
+\DeclareFieldFormat{shorthandwidth}{#1}
+\renewbibmacro{in:}{%   Removes In: for an article
+  \ifentrytype{article}{}{%
+  \printtext{\bibstring{in}\intitlepunct}}}
+%\AtEveryBibitem{\clearfield{month}}
+\AtEveryCitekey{\clearfield{month}}
+
+%% Sweave(-like)
+%% These commands were taken from the rticles package
+\DefineVerbatimEnvironment{Sinput}{Verbatim}{fontshape=sl}
+\DefineVerbatimEnvironment{Soutput}{Verbatim}{}
+\DefineVerbatimEnvironment{Scode}{Verbatim}{fontshape=sl}
+\newenvironment{Schunk}{}{}
+\DefineVerbatimEnvironment{Code}{Verbatim}{}
+\DefineVerbatimEnvironment{CodeInput}{Verbatim}{fontshape=sl}
+\DefineVerbatimEnvironment{CodeOutput}{Verbatim}{}
+\newenvironment{CodeChunk}{}{}
+\setkeys{Gin}{width=0.8\textwidth}
+
+%% paragraphs
+%%\setlength{\parskip}{0.7ex plus0.1ex minus0.1ex}
+\setlength{\parskip}{12pt}
+\setlength{\parindent}{0em}
+
+% I don't think I need this anymore
+%\def\maketitle{
+%  {\color{white} \fontfamily{phv} \fontsize{38}{38} \selectfont CFPB Data Point:\\[25pt]
+%  $dp_title$}\\[40pt]
+%  {\noindent \color{white} \fontfamily{phv} \fontsize{14}{14} \selectfont The CFPB Office of %Research\par}
+%  \newpage
+%  }
+
+% This controls where the CFPB logo appears on the cover sheet
+% Positions are relative to the page center
+\addtolength{\wpXoffset}{-2.3in}
+\addtolength{\wpYoffset}{-3.8in}
+
+\renewcommand{\contentsname}{Table of Contents}
+\renewcommand{\cftsecfont}{\bfseries\fontfamily{phv} \fontsize{12}{12} \selectfont}
+\renewcommand{\cftsecleader}{\bfseries\cftdotfill{\cftdotsep}}
+\renewcommand{\cftsecpagefont}{\bfseries\fontfamily{phv} \fontsize{12}{12} \selectfont}
+\renewcommand{\cftsecaftersnum}{.}%
+\renewcommand{\cftsecpresnum}{\bfseries\color{black}}
+\renewcommand{\cftsubsecpresnum}{\bfseries\color{black}}
+\renewcommand{\cftsubsubsecpresnum}{\bfseries\color{black}}
+\renewcommand{\cftsubsecafterpnum}{\hspace*{0.5in}}
+
+\sectionfont{\mdseries\fontfamily{phv} \fontsize{32}{32} \selectfont}
+\subsectionfont{\mdseries\fontfamily{phv} \fontsize{22}{22} \selectfont}
+\subsubsectionfont{\mdseries\fontfamily{phv} \fontsize{16}{16} \selectfont}
+\makeatletter
+%\renewcommand{\@seccntformat}[1]{\csname the#1\endcsname.\quad}
+%\renewcommand{\@seccntformat}[1]{\csname the#1\endcsname.\hspace*{0.5em}}
+\DeclareRobustCommand{\@seccntformat}[1]{%
+  \def\temp@@a{#1}%
+  \def\temp@@b{section}%
+  \ifx\temp@@a\temp@@b
+  \csname the#1\endcsname.\hspace*{0.25em}%
+  \else
+  \csname the#1\endcsname\hspace*{0.25em}%
+  \fi
+}
+\makeatother
+
+% Start each section on a new page
+\let\stdsection\section
+\renewcommand\section{\newpage\vspace*{1.5in}\stdsection}
+
+\providecommand{\tightlist}{%
+  \setlength{\parskip}{0pt}\setlength{\topsep}{0pt}}
+
+$preamble$
+
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\pagestyle{fancy}
+
+% This is beta on the TOC
+\renewcommand{\cfttoctitlefont}{\fontfamily{phv} \fontsize{32}{32} \selectfont}
+
+% This changes the spacing of text lines
+%\renewcommand{\baselinestretch}{1.4}
+\usepackage{setspace}
+\onehalfspacing
+
+% Adjust the placement and format of captions
+\usepackage{textcase}
+\usepackage[figureposition=top,figurename=FIGURE,
+            tableposition=top,tablename=TABLE]{caption}
+\DeclareCaptionTextFormat{up}{\MakeTextUppercase{#1}}
+\DeclareCaptionFont{ninept}{\fontsize{9pt}{11pt}\selectfont #1}
+%\DeclareCaptionLabelFormat{mylabel}{#1 #2.\hspace{5em}}
+\DeclareCaptionLabelSeparator{mysep}{:\hspace*{0.2in}}
+\captionsetup[figure]{
+  font=ninept,
+  format=hang,
+  labelsep=mysep, % colon,
+  justification=raggedright,
+  singlelinecheck=false,
+  textformat=up,
+  labelfont=bf,
+  textfont=up}
+\captionsetup[table]{
+  font=ninept,
+  format=hang,
+  labelsep=mysep,  % colon,
+  justification=raggedright,
+  singlelinecheck=false,
+  textformat=up,
+  labelfont=bf,
+  textfont=up}
+
+\usepackage{floatrow}
+\floatsetup[figure]{capposition=top}
+\floatsetup[table]{capposition=top}
+
+% This adjusts the footnotes
+\usepackage[hang,flushmargin]{footmisc}
+%\setlength{\footnotesep}{2em}
+\setlength{\footnotemargin}{0.1in}
+
+% This adds row coloring to the tables
+\usepackage[table]{xcolor}
+% These are the green colors for the original table format
+%\definecolor{greenhead}{cmyk}{0.70, 0, 0.89, 0.01}
+%\definecolor{green1}{cmyk}{0.20, 0, 0.28, 0}
+%\definecolor{green2}{cmyk}{0.30, 0.01, 0.48, 0}
+\definecolor{greenhead}{cmyk}{0.26, 0.01, 0.40, 0}
+\definecolor{green1}{cmyk}{0.1, 0.02, 0.12, 0}
+\definecolor{green2}{cmyk}{0, 0, 0, 0}
+\definecolor{hyperblue}{cmyk}{0.73, 0.35, 0, 0}
+
+
+\begin{document}
+\rowcolors{2}{green2}{green1}
+
+% Cover Page
+\begin{titlepage}
+  % This is the old cover page (green cover)
+  %\thispagestyle{fancy}
+  %\ThisULCornerWallPaper{1}{dataPointCoverBackground}
+  %\ThisCenterWallPaper{0.35}{cfpblogo_wide}
+  %\fancyfoot[R]{\fontfamily{phv} \fontsize{10}{10} \selectfont $dp_date$}
+  %\vspace*{1.5in}
+  %{\color{white} \fontfamily{phv} \fontsize{38}{38} \selectfont CFPB Data Point:\\[25pt]
+  %$dp_title$\\[40pt]
+  %\fontsize{14}{14} \selectfont The CFPB Office of Research\par}
+
+  % This is the new cover page
+  \thispagestyle{fancy}
+  \fancyhead[L]{\fontfamily{phv} \fontsize{10}{10} \selectfont $dp_date$}
+  \ThisLLCornerWallPaper{1}{cfpb_report_bottom.png}
+  \ThisCenterWallPaper{0.35}{cfpblogo_wide}
+  \vspace*{1.5in}
+  {\color{black} \fontfamily{phv} \fontsize{38}{38} \selectfont Quarterly Consumer Credit Trends:\\[25pt]
+  $dp_title$\\[40pt]
+  %\fontsize{14}{14} \selectfont The CFPB Office of Research\par}
+\end{titlepage}
+
+% Author Page
+\raggedright
+\fancyhead[L]{}  % This keeps the date on the cover page from repeating on other pages
+\fancyfoot[R]{}
+\fancyfoot[L]{\fontfamily{phv} \fontsize{8}{8} \selectfont \thepage\hspace{20pt}QUARTERLY CONSUMER CREDIT TRENDS: \uppercase{$dp_title$}}
+\begin{itemize}     % [label=\FilledSmallSquare]
+ \renewcommand{\labelitemi}{\scriptsize\FilledSmallSquare}
+  $for(dp_author)$
+    \item $dp_author$
+  $endfor$
+\end{itemize}
+This is part of a series of quarterly reports of consumer credit trends produced by the Consumer Financial Protection Bureau using a longitudinal, nationally-representative sample of approximately five million de-identified credit records from one of the three nationwide credit reporting agencies.
+\newpage
+
+\vspace*{1.5in}
+\tableofcontents
+\thispagestyle{fancy}
+% \clearpage
+% {
+%   \pagestyle{empty}
+%   \fancyfoot[L]{\fontfamily{phv} \fontsize{8}{8} \selectfont \thepage\hspace{20pt}CFPB DATA POINT: \uppercase{$dp_title$}}
+% \vspace*{1.5in}
+% \tableofcontents
+% \thispagestyle{empty}
+% }
+
+\newpage
+
+
+% Body of the report
+$body$
+
+$if(bibliography)$
+\newpage
+\printbibliography[heading=bibintoc,title={References}]
+$endif$
+
+%\bibliography{$bibliography$}
+
+%$if(natbib)$
+%$if(biblio-files)$
+%$if(biblio-title)$
+%$if(book-class)$
+%\renewcommand\bibname{$biblio-title$}
+%$else$
+%\renewcommand\refname{$biblio-title$}
+%$endif$
+%$endif$
+%\newpage
+%\vspace*{1.5in}
+%{\fontfamily{phv} \fontsize{32}{32} \selectfont References}
+%\bibliography{$biblio-files$}
+%$endif$
+%$endif$
+
+%$if(biblatex)$
+%\newpage
+%\vspace*{1.5in}
+%{\fontfamily{phv} \fontsize{32}{32} \selectfont References}
+%\printbibliography
+%$if(biblio-title)$[title=$biblio-title$]$endif$
+%$endif$
+
+\end{document}
