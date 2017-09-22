@@ -108,26 +108,29 @@ $endif$
 \renewcommand{\cftsubsubsecpresnum}{\bfseries\color{black}}
 \renewcommand{\cftsubsecafterpnum}{\hspace*{0.5in}}
 
-\sectionfont{\mdseries\fontfamily{phv} \fontsize{32}{32} \selectfont}
-\subsectionfont{\mdseries\fontfamily{phv} \fontsize{22}{22} \selectfont}
-\subsubsectionfont{\mdseries\fontfamily{phv} \fontsize{16}{16} \selectfont}
+\sectionfont{\bfseries\fontfamily{phv} \fontsize{14}{14} \selectfont}
+\subsectionfont{\mdseries\fontfamily{phv} \fontsize{12}{12} \selectfont}
+\subsubsectionfont{\mdseries\fontfamily{phv} \fontsize{12}{12} \selectfont}
 \makeatletter
 %\renewcommand{\@seccntformat}[1]{\csname the#1\endcsname.\quad}
 %\renewcommand{\@seccntformat}[1]{\csname the#1\endcsname.\hspace*{0.5em}}
+
 \DeclareRobustCommand{\@seccntformat}[1]{%
   \def\temp@@a{#1}%
   \def\temp@@b{section}%
   \ifx\temp@@a\temp@@b
-  \csname the#1\endcsname.\hspace*{0.25em}%
+  \csname \endcsname
+  %\csname the#1\endcsname.\hspace*{0.25em}%
   \else
-  \csname the#1\endcsname\hspace*{0.25em}%
+  \csname \endcsname
+  %\csname the#1\endcsname\hspace*{0.25em}%
   \fi
 }
 \makeatother
 
 % Start each section on a new page
-\let\stdsection\section
-\renewcommand\section{\newpage\vspace*{1.5in}\stdsection}
+%\let\stdsection\section
+%\renewcommand\section{\newpage\vspace*{1.5in}\stdsection}
 
 \providecommand{\tightlist}{%
   \setlength{\parskip}{0pt}\setlength{\topsep}{0pt}}
@@ -249,7 +252,6 @@ This is part of a series of quarterly reports of consumer credit trends produced
 % }
 
 % \newpage
-
 
 % Body of the report
 $body$
