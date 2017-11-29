@@ -53,40 +53,6 @@ $if(bibliography)$
 \addbibresource{$bibliography$}
 $endif$
 
-% This block comes from Rob Hyndman's blog
-\DeclareFieldFormat{url}{Available online at {\color{hyperblue} \url{#1}}}
-\DeclareFieldFormat[article]{pages}{#1}
-\DeclareFieldFormat[inproceedings]{pages}{\lowercase{pp.}#1}
-\DeclareFieldFormat[incollection]{pages}{\lowercase{pp.}#1}
-%\DeclareFieldFormat[article]{volume}{\mkbibbold{#1}}
-%\DeclareFieldFormat[article]{number}{\mkbibparens{#1}}
-\DeclareFieldFormat[article]{title}{\MakeCapital{#1}}
-\DeclareFieldFormat[article]{url}{}
-\DeclareFieldFormat[book]{url}{}
-\DeclareFieldFormat[inbook]{url}{}
-\DeclareFieldFormat[incollection]{url}{}
-\DeclareFieldFormat[inproceedings]{url}{}
-\DeclareFieldFormat[techreport]{url}{}
-\DeclareFieldFormat[inproceedings]{title}{#1}
-\DeclareFieldFormat{shorthandwidth}{#1}
-\renewbibmacro{in:}{%   Removes In: for an article
-  \ifentrytype{article}{}{%
-  \printtext{\bibstring{in}\intitlepunct}}}
-%\AtEveryBibitem{\clearfield{month}}
-\AtEveryCitekey{\clearfield{month}}
-
-%% Sweave(-like)
-%% These commands were taken from the rticles package
-\DefineVerbatimEnvironment{Sinput}{Verbatim}{fontshape=sl}
-\DefineVerbatimEnvironment{Soutput}{Verbatim}{}
-\DefineVerbatimEnvironment{Scode}{Verbatim}{fontshape=sl}
-\newenvironment{Schunk}{}{}
-\DefineVerbatimEnvironment{Code}{Verbatim}{}
-\DefineVerbatimEnvironment{CodeInput}{Verbatim}{fontshape=sl}
-\DefineVerbatimEnvironment{CodeOutput}{Verbatim}{}
-\newenvironment{CodeChunk}{}{}
-\setkeys{Gin}{width=0.8\textwidth}
-
 %% paragraphs
 %%\setlength{\parskip}{0.7ex plus0.1ex minus0.1ex}
 \setlength{\parskip}{12pt}
@@ -134,7 +100,7 @@ $endif$
 
 % Start each section on a new page
 \let\stdsection\section
-\renewcommand\section{\newpage\vspace*{1.5in}\stdsection}
+\renewcommand\section{\newpage\vspace*{0in}\stdsection}
 
 \providecommand{\tightlist}{%
   \setlength{\parskip}{0pt}\setlength{\topsep}{0pt}}
