@@ -16,8 +16,7 @@ datapoint <- function(...) {
                           package = 'dptemplate')
 
   # Copy the necessary graphics files
-  graph_list <- c('cfpblogo_wide.png',
-                  'cfpb_report_bottom.png')
+  graph_list <- c('bcfp_seal.jpg')
   package_dir <- system.file(package = 'dptemplate')
   for(this_graph in graph_list) {
     if (!file.exists(this_graph)) {
@@ -27,7 +26,7 @@ datapoint <- function(...) {
       if (file.exists(old_path)) {
         file.copy(from = old_path, to = this_graph, overwrite = FALSE)
       } else {
-        stop(paste0('Unable to find file:  %s', old_path))
+        stop(paste0('Unable to find file: ', old_path))
       }
     }
   }
