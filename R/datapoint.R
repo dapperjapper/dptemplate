@@ -17,8 +17,6 @@ datapoint <- function(...) {
 
   # Copy the necessary graphics files
   graph_list <- c('cfpblogo_wide.png',
-                  'dataPointCoverBackground.png',
-                  'cfpb_logo.png',
                   'cfpb_report_bottom.png')
   package_dir <- system.file(package = 'dptemplate')
   for(this_graph in graph_list) {
