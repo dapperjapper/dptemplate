@@ -1,6 +1,7 @@
-\documentclass[12pt,letterpaper,twoside]{article}
+\documentclass[11pt,letterpaper,twoside]{article}
 \usepackage[utf8]{inputenc}
-\RequirePackage{graphicx,color,ae,fancyvrb, hyperref}
+\RequirePackage{graphicx,color,ae,fancyvrb}
+\RequirePackage[hidelinks]{hyperref}
 \RequirePackage[T1]{fontenc}
 \usepackage{framed}
 \usepackage[utf8]{inputenc}
@@ -18,6 +19,13 @@
 \usepackage[all]{nowidow}
 \usepackage{tgschola}
 \usepackage{lscape}
+\usepackage{longtable}
+\usepackage{rotating}
+\usepackage{multirow}
+\usepackage{tabularx}
+\usepackage{pdflscape}
+
+\newcolumntype{b}{>{\hsize=\hsize}X}
 
 %\usepackage{fontspec}
 %\usepackage{etex}
@@ -45,40 +53,6 @@ sorting=nyt
 $if(bibliography)$
 \addbibresource{$bibliography$}
 $endif$
-
-% This block comes from Rob Hyndman's blog
-\DeclareFieldFormat{url}{Available online at {\color{hyperblue} \url{#1}}}
-\DeclareFieldFormat[article]{pages}{#1}
-\DeclareFieldFormat[inproceedings]{pages}{\lowercase{pp.}#1}
-\DeclareFieldFormat[incollection]{pages}{\lowercase{pp.}#1}
-%\DeclareFieldFormat[article]{volume}{\mkbibbold{#1}}
-%\DeclareFieldFormat[article]{number}{\mkbibparens{#1}}
-\DeclareFieldFormat[article]{title}{\MakeCapital{#1}}
-\DeclareFieldFormat[article]{url}{}
-\DeclareFieldFormat[book]{url}{}
-\DeclareFieldFormat[inbook]{url}{}
-\DeclareFieldFormat[incollection]{url}{}
-\DeclareFieldFormat[inproceedings]{url}{}
-\DeclareFieldFormat[techreport]{url}{}
-\DeclareFieldFormat[inproceedings]{title}{#1}
-\DeclareFieldFormat{shorthandwidth}{#1}
-\renewbibmacro{in:}{%   Removes In: for an article
-  \ifentrytype{article}{}{%
-  \printtext{\bibstring{in}\intitlepunct}}}
-%\AtEveryBibitem{\clearfield{month}}
-\AtEveryCitekey{\clearfield{month}}
-
-%% Sweave(-like)
-%% These commands were taken from the rticles package
-\DefineVerbatimEnvironment{Sinput}{Verbatim}{fontshape=sl}
-\DefineVerbatimEnvironment{Soutput}{Verbatim}{}
-\DefineVerbatimEnvironment{Scode}{Verbatim}{fontshape=sl}
-\newenvironment{Schunk}{}{}
-\DefineVerbatimEnvironment{Code}{Verbatim}{}
-\DefineVerbatimEnvironment{CodeInput}{Verbatim}{fontshape=sl}
-\DefineVerbatimEnvironment{CodeOutput}{Verbatim}{}
-\newenvironment{CodeChunk}{}{}
-\setkeys{Gin}{width=0.8\textwidth}
 
 %% paragraphs
 %%\setlength{\parskip}{0.7ex plus0.1ex minus0.1ex}
@@ -108,29 +82,26 @@ $endif$
 \renewcommand{\cftsubsubsecpresnum}{\bfseries\color{black}}
 \renewcommand{\cftsubsecafterpnum}{\hspace*{0.5in}}
 
-\sectionfont{\bfseries\fontfamily{phv} \fontsize{14}{14} \selectfont}
-\subsectionfont{\mdseries\fontfamily{phv} \fontsize{12}{12} \selectfont}
-\subsubsectionfont{\mdseries\fontfamily{phv} \fontsize{12}{12} \selectfont}
+\sectionfont{\mdseries\fontfamily{phv} \fontsize{32}{32} \selectfont}
+\subsectionfont{\mdseries\fontfamily{phv} \fontsize{22}{22} \selectfont}
+\subsubsectionfont{\mdseries\fontfamily{phv} \fontsize{16}{16} \selectfont}
 \makeatletter
 %\renewcommand{\@seccntformat}[1]{\csname the#1\endcsname.\quad}
 %\renewcommand{\@seccntformat}[1]{\csname the#1\endcsname.\hspace*{0.5em}}
-
 \DeclareRobustCommand{\@seccntformat}[1]{%
   \def\temp@@a{#1}%
   \def\temp@@b{section}%
   \ifx\temp@@a\temp@@b
-  \csname \endcsname
-  %\csname the#1\endcsname.\hspace*{0.25em}%
+  \csname the#1\endcsname.\hspace*{0.25em}%
   \else
-  \csname \endcsname
-  %\csname the#1\endcsname\hspace*{0.25em}%
+  \csname the#1\endcsname\hspace*{0.25em}%
   \fi
 }
 \makeatother
 
 % Start each section on a new page
-%\let\stdsection\section
-%\renewcommand\section{\newpage\vspace*{1.5in}\stdsection}
+\let\stdsection\section
+\renewcommand\section{\newpage\stdsection}
 
 \providecommand{\tightlist}{%
   \setlength{\parskip}{0pt}\setlength{\topsep}{0pt}}
@@ -188,17 +159,16 @@ $preamble$
 % This adds row coloring to the tables
 \usepackage[table]{xcolor}
 % These are the green colors for the original table format
-%\definecolor{greenhead}{cmyk}{0.70, 0, 0.89, 0.01}
-%\definecolor{green1}{cmyk}{0.20, 0, 0.28, 0}
-%\definecolor{green2}{cmyk}{0.30, 0.01, 0.48, 0}
-\definecolor{greenhead}{cmyk}{0.26, 0.01, 0.40, 0}
-\definecolor{green1}{cmyk}{0.1, 0.02, 0.12, 0}
-\definecolor{green2}{cmyk}{0, 0, 0, 0}
-\definecolor{hyperblue}{cmyk}{0.73, 0.35, 0, 0}
-
+\definecolor{tablegreen}{rgb}{0.68, 0.86, 0.57}
+\definecolor{tablered}{rgb}{0.82, 0.25, 0.14}
+\definecolor{tableorange}{rgb}{1, 0.62, 0.11}
+\definecolor{darkgreen}{rgb}{0.17, 0.70, 0.29}
+\definecolor{cellgreen}{rgb}{0.81, 0.92, 0.74}
+\definecolor{cellorange}{rgb}{1, 0.85, 0.64}
+\definecolor{cellred}{rgb}{0.94, 0.69, 0.65}
 
 \begin{document}
-\rowcolors{2}{green2}{green1}
+%\rowcolors{2}{green2}{green1}
 
 % Cover Page
 \begin{titlepage}
@@ -214,75 +184,29 @@ $preamble$
 
   % This is the new cover page
   \thispagestyle{fancy}
-  \fancyhead[L]{\fontfamily{phv} \fontsize{10}{10} \selectfont $dp_date$}
+  \fancyhead[L]{\fontfamily{phv} \fontsize{10}{10} \selectfont $aes_date$}
   \ThisLLCornerWallPaper{1}{cfpb_report_bottom.png}
   \ThisCenterWallPaper{0.35}{cfpblogo_wide}
   \vspace*{1.5in}
-  {\color{black} \fontfamily{phv} \fontsize{10}{10} \selectfont QUARTERLY CONSUMER CREDIT TRENDS\\[10pt]
-  \fontsize{38}{38} \selectfont $dp_title$\par}
+  {\color{black} \fontfamily{phv} \fontsize{38}{38} \selectfont $aes_year$ CFPB Annual Employee Survey\\[25pt]
+  $dp_title$\\[40pt]
+  \fontsize{14}{14} \selectfont $aes_office$ office survey report\par}
 \end{titlepage}
 
-% Author Page
 \raggedright
 \fancyhead[L]{}  % This keeps the date on the cover page from repeating on other pages
 \fancyfoot[R]{}
-\fancyfoot[L]{\fontfamily{phv} \fontsize{8}{8} \selectfont \thepage\hspace{20pt}QUARTERLY CONSUMER CREDIT TRENDS: \uppercase{$dp_title$}}
-\begin{itemize}     % [label=\FilledSmallSquare]
- \renewcommand{\labelitemi}{\scriptsize\FilledSmallSquare}
-  $for(dp_author)$
-    \item $dp_author$
-  $endfor$
-\end{itemize}
-This is part of a series of quarterly reports of consumer credit trends produced by the Consumer Financial Protection Bureau using a longitudinal, nationally-\allowbreak representative sample of approximately five million de-identified credit records from one of the three nationwide credit reporting agencies.
+\fancyfoot[L]{\fontfamily{phv} \fontsize{8}{8} \selectfont \thepage\hspace{20pt}$aes_year$ CFPB ANNUAL EMPLOYEE SURVEY - \uppercase{$aes_office$} SURVEY REPORT}
+
+
+\vspace*{1.5in}
+\tableofcontents
+\thispagestyle{fancy}
+
 \newpage
 
-% This is the table of contents which will not appear in a qCCT
-%\vspace*{1.5in}
-%\tableofcontents
-%\thispagestyle{fancy}
-% \clearpage
-% {
-%   \pagestyle{empty}
-%   \fancyfoot[L]{\fontfamily{phv} \fontsize{8}{8} \selectfont \thepage\hspace{20pt}CFPB DATA POINT: \uppercase{$dp_title$}}
-% \vspace*{1.5in}
-% \tableofcontents
-% \thispagestyle{empty}
-% }
-
-% \newpage
 
 % Body of the report
 $body$
-
-$if(bibliography)$
-\newpage
-\printbibliography[heading=bibintoc,title={References}]
-$endif$
-
-%\bibliography{$bibliography$}
-
-%$if(natbib)$
-%$if(biblio-files)$
-%$if(biblio-title)$
-%$if(book-class)$
-%\renewcommand\bibname{$biblio-title$}
-%$else$
-%\renewcommand\refname{$biblio-title$}
-%$endif$
-%$endif$
-%\newpage
-%\vspace*{1.5in}
-%{\fontfamily{phv} \fontsize{32}{32} \selectfont References}
-%\bibliography{$biblio-files$}
-%$endif$
-%$endif$
-
-%$if(biblatex)$
-%\newpage
-%\vspace*{1.5in}
-%{\fontfamily{phv} \fontsize{32}{32} \selectfont References}
-%\printbibliography
-%$if(biblio-title)$[title=$biblio-title$]$endif$
-%$endif$
 
 \end{document}

@@ -1,0 +1,70 @@
+---
+aes_year: 2016
+aes_date: January 2017
+aes_office: RMR Research
+draft: TRUE
+output: dptemplate::aes_report
+---
+
+# Introduction
+
+This template provides some of the basic command you will need to generate a CFPB Data Point directly from R.
+
+# R code
+
+Can be inserted in regular R markdown blocks.
+
+```{r}
+x <- 1:10
+x
+```
+
+qgd
+qererqe
+
+rqreqw
+
+qreqrwq
+
+qreqreq
+
+qrqrerqwrqw
+
+
+qreqrerq
+
+fadkfljdsakfj
+
+afdkalfjakdsjf
+
+fjakfldjaklf;
+
+afjkdalfjakl;
+
+afjkdalfjkla;j
+
+fjakfl;djsak
+
+fjakfld;ajfkl;ds
+
+fjakl;fjdkal;fj
+
+jfkal;fjdksal;jf
+
+fjkdalf;jsakl;j
+
+fjakfl;sdjfkl;s
+
+ajfkld;ajfkl;a
+
+jfakfla;fjkld
+
+ajfkdla;jkdla;j
+
+fajkld;fjkfa
+
+fjakfl;djkl;
+
+fajkdl;afjdkl;
+
+fjafkd;afjl;jkfa

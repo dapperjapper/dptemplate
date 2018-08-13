@@ -1,0 +1,4 @@
+name: Annual Employee Survey
+description: >
+  Template for creating an Annual Employee Survey report using LaTeX.
+create_dir: true
