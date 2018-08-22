@@ -85,14 +85,6 @@ $endif$
 \setlength{\parskip}{12pt}
 \setlength{\parindent}{0em}
 
-% I don't think I need this anymore
-%\def\maketitle{
-%  {\color{white} \fontfamily{phv} \fontsize{38}{38} \selectfont CFPB Data Point:\\[25pt]
-%  $dp_title$}\\[40pt]
-%  {\noindent \color{white} \fontfamily{phv} \fontsize{14}{14} \selectfont The CFPB Office of %Research\par}
-%  \newpage
-%  }
-
 % This controls where the CFPB logo appears on the cover sheet
 % Positions are relative to the page center
 \addtolength{\wpXoffset}{-2.3in}
@@ -199,39 +191,22 @@ $preamble$
 
 % Cover Page
 \begin{titlepage}
-  % This is the old cover page (green cover)
-  %\thispagestyle{fancy}
-  %\ThisULCornerWallPaper{1}{dataPointCoverBackground}
-  %\ThisCenterWallPaper{0.35}{cfpblogo_wide}
-  %\fancyfoot[R]{\fontfamily{phv} \fontsize{10}{10} \selectfont $dp_date$}
-  %\vspace*{1.5in}
-  %{\color{white} \fontfamily{phv} \fontsize{38}{38} \selectfont CFPB Data Point:\\[25pt]
-  %$dp_title$\\[40pt]
-  %\fontsize{14}{14} \selectfont The CFPB Office of Research\par}
-
   % This is the new cover page
   \thispagestyle{fancy}
   \fancyhead[L]{\fontfamily{phv} \fontsize{10}{10} \selectfont $dp_date$}
-  \ThisLLCornerWallPaper{1}{cfpb_report_bottom.png}
-  \ThisCenterWallPaper{0.35}{cfpblogo_wide}
+  \ThisCenterWallPaper{0.35}{bcfp_seal}
   \vspace*{1.5in}
-  {\color{black} \fontfamily{phv} \fontsize{38}{38} \selectfont CFPB Data Point:\\[25pt]
+  {\color{black} \fontfamily{phv} \fontsize{38}{38} \selectfont \textbf{Data Point:}\\[25pt]
   $dp_title$\\[40pt]
-  \fontsize{14}{14} \selectfont The CFPB Office of Research\par}
+  \fontsize{14}{14} \selectfont The Bureau of Consumer Financial Protection’s Office of Research\par}
 \end{titlepage}
 
 % Author Page
 \raggedright
 \fancyhead[L]{}  % This keeps the date on the cover page from repeating on other pages
 \fancyfoot[R]{}
-\fancyfoot[L]{\fontfamily{phv} \fontsize{8}{8} \selectfont \thepage\hspace{20pt}CFPB DATA POINT: \uppercase{$dp_title$}}
-\begin{itemize}     % [label=\FilledSmallSquare]
- \renewcommand{\labelitemi}{\scriptsize\FilledSmallSquare}
-  $for(dp_author)$
-    \item $dp_author$
-  $endfor$
-\end{itemize}
-This is another in an occasional series of publications from the Consumer Financial Protection Bureau's Office of Research. These publications are intended to further the Bureau's objective of providing an evidence-based perspective on consumer financial markets, consumer behavior, and regulations to inform the public discourse.
+\fancyfoot[L]{\fontfamily{phv} \fontsize{8}{8} \selectfont \thepage\hspace{20pt}DATA POINT: \uppercase{$dp_title$}}
+This is another in an occasional series of publications from the Bureau of Consumer Financial Protection’s Office of Research. These publications are intended to further the Bureau’s objective of providing an evidence-based perspective on consumer financial markets, consumer behavior, and regulations to inform the public discourse. See 12 U.S.C. §5493(d)\footnote{This report prepared by $authors_text$.}
 \newpage
 
 \vspace*{1.5in}
