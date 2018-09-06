@@ -16,6 +16,7 @@ datapoint <- function(...) {
                           package = 'dptemplate')
 
   # Copy the necessary graphics files
+  clean_logo <- FALSE
   graph_list <- c('bcfp_seal.jpg')
   package_dir <- system.file(package = 'dptemplate')
   for(this_graph in graph_list) {
@@ -25,6 +26,7 @@ datapoint <- function(...) {
                           this_graph)
       if (file.exists(old_path)) {
         file.copy(from = old_path, to = this_graph, overwrite = FALSE)
+        clean_logo <- TRUE
       } else {
         stop(paste0('Unable to find file: ', old_path))
       }
@@ -41,6 +43,9 @@ datapoint <- function(...) {
   ret_val$inherits <- 'pdf_book'
 
   ret_val$knitr$opts_chunk$highlight <- FALSE
+
+  if (clean_logo)
+    ret_val$on_exit <- function() file.remove('bcfp_seal.jpg')
 
   ret_val
 }

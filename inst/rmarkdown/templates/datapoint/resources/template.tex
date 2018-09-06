@@ -8,7 +8,7 @@
 \usepackage[none]{hyphenat}
 \usepackage{fancyhdr}
 \usepackage[letterpaper,left=1in,right=1in,top=1.2in,bottom=1.25in,footskip=.6in]{geometry}
-\usepackage{enumitem}
+\usepackage[inline]{enumitem}
 \usepackage{amssymb}
 \usepackage[geometry]{ifsym}
 \usepackage{tocbibind}
@@ -18,6 +18,7 @@
 \usepackage[all]{nowidow}
 \usepackage{tgschola}
 \usepackage{lscape}
+\usepackage{scrextend}
 
 %\usepackage{fontspec}
 %\usepackage{etex}
@@ -198,9 +199,11 @@ $preamble$
   \fancyhead[L]{\fontfamily{phv} \fontsize{10}{10} \selectfont $dp_date$}
   \ThisCenterWallPaper{0.35}{bcfp_seal}
   \vspace*{1.5in}
+  \begin{addmargin}[0in]{1in}
   {\color{black} \fontfamily{phv} \fontsize{38}{38} \selectfont \textbf{Data Point:}\\[25pt]
   $dp_title$\\[40pt]
   \fontsize{14}{14} \selectfont The Bureau of Consumer Financial Protection’s Office of Research\par}
+  \end{addmargin}
 \end{titlepage}
 
 % Author Page
@@ -208,7 +211,13 @@ $preamble$
 \fancyhead[L]{}  % This keeps the date on the cover page from repeating on other pages
 \fancyfoot[R]{}
 \fancyfoot[L]{\fontfamily{phv} \fontsize{8}{8} \selectfont \thepage\hspace{20pt}DATA POINT: \uppercase{$dp_title$}}
-This is another in an occasional series of publications from the Bureau of Consumer Financial Protection’s Office of Research. These publications are intended to further the Bureau’s objective of providing an evidence-based perspective on consumer financial markets, consumer behavior, and regulations to inform the public discourse. See 12 U.S.C. §5493(d)\footnote{This report prepared by $authors_text$.}
+This is another in an occasional series of publications from the Bureau of Consumer Financial Protection’s Office of Research. These publications are intended to further the Bureau’s objective of providing an evidence-based perspective on consumer financial markets, consumer behavior, and regulations to inform the public discourse. See 12 U.S.C. §5493(d)\footnote{This report prepared by
+\begin{itemize*}[label={}, itemjoin={,}, itemjoin*={, and}]
+  $for(dp_author)$
+    \item $dp_author$
+  $endfor$
+\end{itemize*}
+.}
 \newpage
 
 \vspace*{1.5in}
