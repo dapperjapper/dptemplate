@@ -206,6 +206,10 @@ $preamble$
   \end{addmargin}
 \end{titlepage}
 
+$if(book_page_numbers)$
+\pagenumbering{gobble}
+$endif$
+
 % Author Page
 \raggedright
 \fancyhead[L]{}  % This keeps the date on the cover page from repeating on other pages
@@ -233,6 +237,10 @@ This is another in an occasional series of publications from the Bureau of Consu
 
 \newpage
 
+
+$if(book_page_numbers)$
+\pagenumbering{arabic}
+$endif$
 
 % Body of the report
 $body$
