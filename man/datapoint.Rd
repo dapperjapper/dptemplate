@@ -4,7 +4,7 @@
 \alias{datapoint}
 \title{CFPB Data Point Format}
 \usage{
-datapoint(...)
+datapoint(qCCT = F, ...)
 }
 \arguments{
 \item{...}{Arguments to \code{bookdown::pdf_book}}
