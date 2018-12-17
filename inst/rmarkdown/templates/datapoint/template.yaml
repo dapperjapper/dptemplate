@@ -1,4 +1,4 @@
-name: Data Point
+name: CFPB Report
 description: >
-  Template for creating a Data Point using LaTeX.
+  Template for creating a CFPB report using LaTeX.
 create_dir: true
