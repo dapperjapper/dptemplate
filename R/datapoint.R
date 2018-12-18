@@ -9,7 +9,7 @@
 #' @return R Markdown output format to pass to
 #'   \code{\link[rmarkdown::render]{render}}
 #' @export
-datapoint <- function(qCCT = F, ...) {
+datapoint <- function(...) {
 
   # Get the location of the template file
   tex_file <- system.file('rmarkdown/templates/datapoint/resources/template.tex',
@@ -34,7 +34,7 @@ datapoint <- function(qCCT = F, ...) {
   }
 
   ret_val <- bookdown::pdf_book(...,
-                                toc = qCCT,
+                                toc = T,
                                 citation_package = 'biblatex',
                                 #citation_package = 'none',
                                 #number_sections = TRUE,
@@ -49,8 +49,6 @@ datapoint <- function(qCCT = F, ...) {
 
   ret_val
 }
-
-qCCT <- function(...) datapoint(qCCT=T, ...)
 
 #' CFPB Data Point Format in Word
 #'
